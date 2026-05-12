@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mariage Timothée & Christel — 27 août 2027</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-bg: #ffffff;
+      --color-bg-secondary: #f5f5f4;
+      --color-text: #1c1917;
+      --color-text-secondary: #78716c;
+      --color-text-tertiary: #a8a29e;
+      --color-border: #e7e5e4;
+      --color-border-light: #f0efee;
+      --green: #1D9E75;
+      --green-light: #E1F5EE;
+      --green-dark: #0F6E56;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-serif: Georgia, 'Times New Roman', serif;
+    }
+    body { background: var(--color-bg); font-family: var(--font-sans); color: var(--color-text); }
+    .page { max-width: 540px; margin: 0 auto; padding-bottom: 3rem; }
+
+    /* HERO */
+    .hero {
+      width: 100%; height: 240px;
+      background-image: url('drone.jpg');
+      background-size: cover; background-position: center 40%;
+      position: relative;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      overflow: hidden;
+    }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.5)); }
+    .hero-text { position: absolute; bottom: 1.75rem; left: 0; right: 0; text-align: center; color: white; }
+    .hero-monogram { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.8; margin-bottom: 8px; }
+    .hero-names { font-family: var(--font-serif); font-size: 30px; font-weight: 400; line-height: 1.3; }
+    .hero-date { font-size: 11px; letter-spacing: 0.18em; opacity: 0.75; margin-top: 6px; }
+
+    .body { padding: 2rem 1.25rem 0; }
+
+    /* PHOTO */
+    .photo-wrap { text-align: center; margin-bottom: 1.5rem; }
+    .photo-couple {
+      width: 100px; height: 100px; border-radius: 50%;
+      object-fit: cover; border: 3px solid var(--color-border);
+      display: block; margin: 0 auto;
+    }
+    .photo-placeholder {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: var(--color-bg-secondary);
+      border: 2px dashed var(--color-border);
+      margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: var(--color-text-tertiary); font-size: 11px; text-align: center; gap: 4px;
+    }
+    .photo-placeholder i { font-size: 22px; }
+
+    .invite-text { font-size: 14px; color: var(--color-text-secondary); line-height: 1.75; text-align: center; margin-bottom: 1.75rem; }
+
+    /* COUNTDOWN */
+    .countdown { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.75rem; }
+    .cd-box { text-align: center; background: var(--color-bg-secondary); border-radius: var(--radius-md); padding: 0.85rem 0.5rem; }
+    .cd-num { font-family: var(--font-serif); font-size: 26px; font-weight: 400; color: var(--color-text); line-height: 1; }
+    .cd-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-tertiary); margin-top: 5px; }
+
+    /* HEURE */
+    .info-pill {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      font-size: 13px; color: var(--color-text-secondary);
+      background: var(--color-bg-secondary);
+      border-radius: 20px; padding: 6px 16px; margin-bottom: 2rem;
+    }
+
+    .divider-line { height: 0.5px; background: var(--color-border-light); margin-bottom: 2rem; }
+
+    /* PROGRESS */
+    .progress { display: flex; gap: 8px; justify-content: center; margin-bottom: 2rem; }
+    .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--color-border); transition: background 0.2s; }
+    .dot.on { background: var(--color-text); }
+
+    /* STEPS */
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .field { margin-bottom: 1.5rem; }
+    .field label { display: block; font-size: 12px; letter-spacing: 0.08em; color: var(--color-text-secondary); margin-bottom: 8px; text-transform: uppercase; }
+    .field input, .field textarea {
+      width: 100%; font-size: 15px; font-family: var(--font-sans);
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-md); padding: 11px 14px;
+      background: var(--color-bg); color: var(--color-text);
+    }
+    .field textarea { resize: none; height: 110px; line-height: 1.7; }
+    .field input::placeholder, .field textarea::placeholder { color: var(--color-text-tertiary); }
+
+    .presence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pcard {
+      border: 0.5px solid var(--color-border-light); border-radius: var(--radius-lg);
+      padding: 1.5rem 1rem; text-align: center; cursor: pointer;
+      background: var(--color-bg); transition: border-color 0.15s, background 0.15s;
+    }
+    .pcard:hover { border-color: var(--color-border); }
+    .pcard.yes-on { border: 1.5px solid var(--green); background: var(--green-light); }
+    .pcard.no-on { border: 1.5px solid var(--color-border); background: var(--color-bg-secondary); }
+    .pcard-icon { font-size: 24px; color: var(--color-text-tertiary); margin-bottom: 10px; display: block; }
+    .pcard.yes-on .pcard-icon { color: var(--green-dark); }
+    .pcard-label { font-size: 14px; font-weight: 500; color: var(--color-text); }
+    .pcard-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 4px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .tag {
+      padding: 6px 14px; border-radius: 20px; font-size: 13px;
+      border: 0.5px solid var(--color-border); cursor: pointer;
+      background: var(--color-bg); color: var(--color-text-secondary);
+      transition: all 0.15s; font-family: var(--font-sans);
+    }
+    .tag.on { background: var(--green-light); border-color: var(--green); color: var(--green-dark); }
+
+    .counter { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+    .cnt-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 0.5px solid var(--color-border); background: var(--color-bg);
+      font-size: 20px; cursor: pointer; color: var(--color-text);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-sans); line-height: 1;
+    }
+    .cnt-btn:hover { background: var(--color-bg-secondary); }
+    .cnt-val { font-size: 24px; font-weight: 500; color: var(--color-text); min-width: 28px; text-align: center; }
+    .cnt-label { font-size: 13px; color: var(--color-text-secondary); }
+
+    .btn-main {
+      width: 100%; padding: 13px; border-radius: var(--radius-md);
+      background: var(--color-text); color: var(--color-bg);
+      border: none; font-size: 13px; letter-spacing: 0.1em; cursor: pointer;
+      font-family: var(--font-sans); margin-top: 0.5rem; text-transform: uppercase;
+    }
+    .btn-main:disabled { opacity: 0.3; cursor: default; }
+    .btn-back {
+      background: none; border: none; font-size: 13px;
+      color: var(--color-text-secondary); cursor: pointer;
+      font-family: var(--font-sans); padding: 10px 0; width: 100%; text-align: center; margin-top: 0.25rem;
+    }
+    .deadline { font-size: 12px; color: var(--color-text-tertiary); text-align: center; margin-top: 1.5rem; }
+    .absent-note { background: var(--color-bg-secondary); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+    .absent-note p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+
+    /* SUCCESS */
+    .success { text-align: center; padding: 2rem 0 1.5rem; }
+    .success-icon { font-size: 36px; color: var(--green); margin-bottom: 1.25rem; }
+    .success-title { font-family: var(--font-serif); font-size: 24px; font-weight: 400; color: var(--color-text); margin-bottom: 0.75rem; }
+    .success-body { font-size: 14px; color: var(--color-text-secondary); line-height: 1.8; }
+
+    /* ADDRESS */
+    .address-block {
+      border: 0.5px solid var(--color-border-light); border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem; margin-top: 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .address-icon { font-size: 20px; color: var(--color-text-tertiary); margin-top: 2px; flex-shrink: 0; }
+    .address-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-tertiary); margin-bottom: 6px; }
+    .address-text { font-size: 15px; color: var(--color-text); line-height: 1.6; }
+    .address-link {
+      display: inline-block; margin-top: 10px; font-size: 12px;
+      color: var(--color-text-secondary); text-decoration: none;
+      border-bottom: 0.5px solid var(--color-border); padding-bottom: 1px; letter-spacing: 0.04em;
+    }
+    .address-link:hover { color: var(--color-text); }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <p class="hero-monogram">Mariage</p>
+      <h1 class="hero-names">Timothée &amp; Christel</h1>
+      <p class="hero-date">27 AOÛT 2027</p>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="photo-wrap" style="margin-top:2rem;">
+      <!-- Remplacez "photo.jpg" par le nom de votre photo une fois ajoutée -->
+      <!-- <img class="photo-couple" src="photo.jpg" alt="Timothée & Christel" /> -->
+      <div class="photo-placeholder">
+        <i class="ti ti-camera"></i>
+        <span>Photo à venir</span>
+      </div>
+    </div>
+
+    <p class="invite-text">Vous êtes conviés à partager notre repas en famille.<br>Merci de nous confirmer votre présence.</p>
+
+    <div class="countdown">
+      <div class="cd-box"><div class="cd-num" id="cd-j">--</div><div class="cd-label">Jours</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">--</div><div class="cd-label">Heures</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">--</div><div class="cd-label">Minutes</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">--</div><div class="cd-label">Secondes</div></div>
+    </div>
+
+    <div class="info-pill">
+      <i class="ti ti-clock" style="font-size:15px;"></i>
+      Repas à partir de 15h00
+    </div>
+
+    <div class="divider-line"></div>
+
+    <div class="progress">
+      <div class="dot on" id="d1"></div>
+      <div class="dot" id="d2"></div>
+      <div class="dot" id="d3"></div>
+    </div>
+
+    <div class="step active" id="s1">
+      <div class="field">
+        <label>Votre prénom et nom</label>
+        <input type="text" id="fname" placeholder="Ex : Marie Dupont" oninput="checkStep1()" />
+      </div>
+      <div class="field">
+        <label>Serez-vous présent(e) au repas ?</label>
+        <div class="presence-grid">
+          <div class="pcard" id="cy" onclick="setP('yes')">
+            <span class="pcard-icon"><i class="ti ti-heart"></i></span>
+            <div class="pcard-label">Avec joie</div>
+            <div class="pcard-sub">Je serai là</div>
+          </div>
+          <div class="pcard" id="cn" onclick="setP('no')">
+            <span class="pcard-icon"><i class="ti ti-calendar-off"></i></span>
+            <div class="pcard-label">Avec regrets</div>
+            <div class="pcard-sub">Je ne pourrai pas</div>
+          </div>
+        </div>
+      </div>
+      <button class="btn-main" id="b1" onclick="go(2)" disabled>Continuer</button>
+      <p class="deadline">Merci de répondre avant le 27 juin 2027</p>
+    </div>
+
+    <div class="step" id="s2">
+      <div id="if-yes" style="display:none;">
+        <div class="field">
+          <label>Combien serez-vous ?</label>
+          <div class="counter">
+            <button class="cnt-btn" onclick="adj(-1)">−</button>
+            <span class="cnt-val" id="cval">1</span>
+            <button class="cnt-btn" onclick="adj(1)">+</button>
+            <span class="cnt-label" id="clabel">personne</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Régime alimentaire ou allergies</label>
+          <div class="tags">
+            <span class="tag" onclick="tog(this)">Végétarien</span>
+            <span class="tag" onclick="tog(this)">Vegan</span>
+            <span class="tag" onclick="tog(this)">Sans gluten</span>
+            <span class="tag" onclick="tog(this)">Sans lactose</span>
+            <span class="tag" onclick="tog(this)">Halal</span>
+            <span class="tag" onclick="tog(this)">Casher</span>
+            <span class="tag" onclick="tog(this)">Allergie fruits à coque</span>
+            <span class="tag" onclick="tog(this)">Aucun</span>
+          </div>
+        </div>
+      </div>
+      <div id="if-no" style="display:none;">
+        <div class="absent-note">
+          <p>Nous sommes navrés de ne pas pouvoir vous compter parmi nous ce soir-là. Vous pouvez laisser un mot aux mariés si vous le souhaitez.</p>
+        </div>
+      </div>
+      <div class="field">
+        <label>Un mot pour les mariés <span style="text-transform:none;letter-spacing:0;font-size:11px;color:var(--color-text-tertiary)">(facultatif)</span></label>
+        <textarea id="msg" placeholder="Vos vœux, une anecdote, un souvenir partagé..."></textarea>
+      </div>
+      <button class="btn-main" onclick="go(3)">Confirmer ma réponse</button>
+      <button class="btn-back" onclick="go(1)">Retour</button>
+    </div>
+
+    <div class="step" id="s3">
+      <div class="success">
+        <div class="success-icon"><i class="ti ti-circle-check"></i></div>
+        <h2 class="success-title" id="stitle">Merci !</h2>
+        <p class="success-body" id="sbody"></p>
+      </div>
+      <div class="address-block" id="addr-block" style="display:none;">
+        <span class="address-icon"><i class="ti ti-map-pin"></i></span>
+        <div>
+          <p class="address-label">Lieu du repas</p>
+          <p class="address-text">59 rue de Préfontaine<br>45490 Courtempierre</p>
+          <a class="address-link" href="https://maps.google.com/?q=59+rue+de+Prefontaine+45490+Courtempierre" target="_blank">Ouvrir dans Google Maps →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let presence = null, count = 1;
+
+function updateCd() {
+  const target = new Date('2027-08-27T15:00:00');
+  const now = new Date();
+  let diff = Math.max(0, target - now);
+  const j = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-j').textContent = String(j).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+updateCd();
+setInterval(updateCd, 1000);
+
+function setP(v) {
+  presence = v;
+  document.getElementById('cy').className = 'pcard' + (v==='yes' ? ' yes-on' : '');
+  document.getElementById('cn').className = 'pcard' + (v==='no' ? ' no-on' : '');
+  checkStep1();
+}
+
+function checkStep1() {
+  document.getElementById('b1').disabled = !(document.getElementById('fname').value.trim() && presence);
+}
+
+function adj(d) {
+  count = Math.max(1, Math.min(15, count + d));
+  document.getElementById('cval').textContent = count;
+  document.getElementById('clabel').textContent = count === 1 ? 'personne' : 'personnes';
+}
+
+function tog(el) { el.classList.toggle('on'); }
+
+function setDots(n) {
+  for (let i = 1; i <= 3; i++)
+    document.getElementById('d'+i).classList.toggle('on', i <= n);
+}
+
+function go(n) {
+  if (n === 2) {
+    document.getElementById('if-yes').style.display = presence === 'yes' ? 'block' : 'none';
+    document.getElementById('if-no').style.display  = presence === 'no'  ? 'block' : 'none';
+  }
+  if (n === 3) {
+    const first = document.getElementById('fname').value.trim().split(' ')[0];
+    if (presence === 'yes') {
+      const who = count === 1 ? 'vous seul(e)' : 'vous ' + count + ' au total';
+      document.getElementById('stitle').textContent = 'À très bientôt, ' + first + ' !';
+      document.getElementById('sbody').textContent  = 'Votre présence est confirmée pour ' + who + ' au repas du 27 août 2027. Timothée et Christel ont hâte de vous retrouver à 15h00.';
+      document.getElementById('addr-block').style.display = 'flex';
+    } else {
+      document.getElementById('stitle').textContent = 'Réponse enregistrée';
+      document.getElementById('sbody').textContent  = 'Nous sommes navrés de ne pas vous compter parmi nous. Merci d\'avoir pris le temps de répondre, ' + first + '.';
+      document.getElementById('addr-block').style.display = 'none';
+    }
+  }
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  setDots(n);
+}
+</script>
+</body>
+</html>
