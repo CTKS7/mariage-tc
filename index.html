@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#f7f2e9">
 <title>Timothée & Christel — 13 août 2027</title>
 
@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<link rel="preload" as="image" href="mairie-longjumeau.jpg">
+<link rel="preload" as="image" href="eden-eloah.jpg">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -29,25 +31,27 @@ body{
   var(--ivory);font-family:var(--sans);color:var(--ink);overflow-x:hidden
 }
 button,input,textarea{font:inherit}[hidden]{display:none!important}button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
 .app{width:min(100%,660px);min-height:100vh;margin:0 auto;position:relative;overflow:hidden;background:rgba(255,253,249,.56);box-shadow:0 0 90px rgba(55,48,38,.07)}
-
-.layer{min-height:100svh;display:none;align-items:center;justify-content:center;position:relative;padding:20px 14px;animation:layerIn .68s cubic-bezier(.16,1,.3,1) both}
-.layer.active{display:flex}
-@keyframes layerIn{from{opacity:0;transform:translateY(14px) scale(.992)}to{opacity:1;transform:translateY(0) scale(1)}}
-.paper{width:100%;max-width:585px;position:relative;z-index:5;background:rgba(255,253,249,.96);box-shadow:var(--shadow)}
+.layer{min-height:100svh;display:none;align-items:center;justify-content:center;position:relative;padding:20px 14px}
+.layer.active{display:flex;animation:layerIn .72s cubic-bezier(.16,1,.3,1) both}
+.layer.leaving{display:flex;animation:layerOut .38s cubic-bezier(.4,0,1,1) both;pointer-events:none}
+@keyframes layerIn{from{opacity:0;transform:translateY(16px) scale(.992)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes layerOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-10px) scale(.994)}}
+.paper{width:100%;max-width:585px;position:relative;z-index:5;background:rgba(255,253,249,.97);box-shadow:var(--shadow)}
 .back{
   position:absolute;top:18px;left:18px;z-index:15;width:40px;height:40px;border-radius:50%;
-  border:1px solid rgba(184,135,105,.25);background:rgba(255,253,249,.88);color:var(--olive2);
+  border:1px solid rgba(184,135,105,.25);background:rgba(255,253,249,.92);color:var(--olive2);
   display:grid;place-items:center;font-size:18px;box-shadow:0 8px 20px rgba(70,60,50,.06)
 }
 .layer-count{position:absolute;left:0;right:0;bottom:13px;text-align:center;font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(128,109,95,.65);z-index:10}
 #layer1 .layer-count{display:none}
 
-/* 1 — ENVELOPE */
+/* 1 — ENVELOPPE */
 #layer1{padding:24px 18px}
-.cover{width:100%;max-width:520px;text-align:center;position:relative;z-index:5;padding:4px 0 8px;transition:opacity .62s cubic-bezier(.4,0,.2,1),transform .62s cubic-bezier(.4,0,.2,1)}
-#layer1.envelope-leaving .cover{opacity:0;transform:translateY(-14px) scale(.988)}
+.cover{width:100%;max-width:520px;text-align:center;position:relative;z-index:5;padding:4px 0 8px;transition:opacity .68s cubic-bezier(.4,0,.2,1),transform .68s cubic-bezier(.4,0,.2,1),filter .68s ease}
+#layer1.envelope-leaving .cover{opacity:0;transform:translateY(-18px) scale(.985);filter:blur(1.5px)}
 .kicker{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze);margin-bottom:18px}
 .envelope-wrap{width:min(86vw,440px);margin:0 auto;position:relative;padding-top:2px}
 .envelope{
@@ -60,14 +64,13 @@ button,input,textarea{font:inherit}[hidden]{display:none!important}button{cursor
 }
 .env-liner{
   position:absolute;inset:7px 7px auto;height:58%;z-index:2;border-radius:7px 7px 0 0;
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  background:linear-gradient(135deg,#dfe7db,#cbd7c5);
+  clip-path:polygon(0 0,100% 0,50% 100%);background:linear-gradient(135deg,#dfe7db,#cbd7c5)
 }
 .env-card{
   position:absolute;left:10%;right:10%;top:13%;height:76%;z-index:3;
   background:linear-gradient(#fffefb,#faf5ed);border:1px solid rgba(184,135,105,.32);border-radius:3px;
   display:flex;align-items:center;justify-content:center;flex-direction:column;
-  transform:translateY(7%);transition:transform .92s cubic-bezier(.16,1,.3,1),box-shadow .55s ease;
+  transform:translateY(7%);transition:transform 1.08s cubic-bezier(.16,1,.3,1),box-shadow .65s ease;
   box-shadow:0 7px 14px rgba(64,54,45,.05);will-change:transform
 }
 .env-card .tiny{font-size:8px;letter-spacing:.26em;text-transform:uppercase;color:var(--rose)}
@@ -75,55 +78,37 @@ button,input,textarea{font:inherit}[hidden]{display:none!important}button{cursor
 .env-card .script .script-line{display:block}
 .env-card .script .amp{font:400 22px/1 var(--serif);color:var(--rose);margin:6px 0 4px}
 .env-card .date{font:500 13px var(--serif);letter-spacing:.15em;color:var(--bronze)}
-
-/* Les trois pans de l'enveloppe restent STRICTEMENT dans son rectangle. */
 .env-left,.env-right,.env-bottom{position:absolute;inset:0;z-index:5;pointer-events:none;border-radius:11px}
-.env-left{
-  background:linear-gradient(145deg,#f4eadc,#efe1d0);
-  clip-path:polygon(0 0,51% 52%,51% 100%,0 100%);
-}
-.env-right{
-  background:linear-gradient(215deg,#f4eadc,#efe1d0);
-  clip-path:polygon(100% 0,49% 52%,49% 100%,100% 100%);
-}
-.env-bottom{
-  z-index:6;background:linear-gradient(180deg,#f7eee2,#ecddca);
-  clip-path:polygon(0 100%,50% 48%,100% 100%);
-}
+.env-left{background:linear-gradient(145deg,#f4eadc,#efe1d0);clip-path:polygon(0 0,51% 52%,51% 100%,0 100%)}
+.env-right{background:linear-gradient(215deg,#f4eadc,#efe1d0);clip-path:polygon(100% 0,49% 52%,49% 100%,100% 100%)}
+.env-bottom{z-index:6;background:linear-gradient(180deg,#f7eee2,#ecddca);clip-path:polygon(0 100%,50% 48%,100% 100%)}
 .env-flap{
   position:absolute;left:0;right:0;top:0;height:60%;z-index:7;
   background:linear-gradient(180deg,#eadcca,#e2d1bd);clip-path:polygon(0 0,100% 0,50% 100%);
-  transform-origin:top center;transform:rotateX(0deg);
-  transition:transform .78s cubic-bezier(.16,1,.3,1);backface-visibility:hidden;will-change:transform
+  transform-origin:top center;transform:rotateX(0deg);transition:transform .9s cubic-bezier(.16,1,.3,1);backface-visibility:hidden;will-change:transform
 }
 .env-seal{
   position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);z-index:8;
   width:58px;height:58px;border-radius:50%;display:grid;place-items:center;color:#fff9f3;font-size:20px;
   background:radial-gradient(circle at 35% 28%,#d5ad94,#b57d63 72%,#9d6650);
   box-shadow:0 5px 14px rgba(83,58,44,.20),inset 0 0 0 3px rgba(255,255,255,.08);
-  transition:opacity .26s ease,transform .26s ease
+  transition:opacity .28s ease,transform .28s ease
 }
 .envelope.open1 .env-flap{transform:rotateX(180deg)}
 .envelope.open1 .env-seal{opacity:0;transform:translate(-50%,-50%) scale(.86)}
-.envelope.open2 .env-card{transform:translateY(-47%);box-shadow:0 18px 30px rgba(64,54,45,.11)}
+.envelope.open2 .env-card{transform:translateY(-49%);box-shadow:0 20px 34px rgba(64,54,45,.11)}
 .cover-note{position:relative;z-index:12;font:italic 17px/1.45 var(--serif);color:var(--bronze);margin-top:18px}
 .btn{
   width:100%;border:none;border-radius:999px;padding:14px 18px;background:var(--olive);color:white;
-  font:500 9px var(--sans);letter-spacing:.18em;text-transform:uppercase;box-shadow:0 9px 23px rgba(89,105,77,.16)
+  font:500 9px var(--sans);letter-spacing:.18em;text-transform:uppercase;box-shadow:0 9px 23px rgba(89,105,77,.16);
+  transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease,background .2s ease
 }
+.btn:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(89,105,77,.18)}
+.btn:active{transform:translateY(0) scale(.995)}
 .open-btn{position:relative;z-index:12;max-width:250px;margin:14px auto 0}
 .open-btn:disabled{opacity:.55;cursor:default}
 
-@media(max-height:760px){
-  #layer1{padding-top:14px;padding-bottom:14px}
-  .cover{max-width:470px}
-  .kicker{margin-bottom:12px}
-  .envelope-wrap{width:min(78vw,380px)}
-  .cover-note{margin-top:13px;font-size:16px}
-  .open-btn{margin-top:11px;padding:12px 18px}
-}
-
-/* 2 — FAMILY GATE */
+/* 2 — IDENTIFICATION */
 .gate-paper{border-radius:28px;padding:75px 28px 36px;border:1px solid rgba(184,135,105,.30);overflow:hidden}
 .gate-head{text-align:center;position:relative;z-index:4;margin-bottom:28px}
 .gate-head .mini{font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:var(--rose)}
@@ -139,8 +124,10 @@ input,textarea{
 input:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(152,165,139,.10)}
 .error{display:none;margin-top:10px;padding:10px 12px;border-radius:11px;background:#faf0eb;border:1px solid rgba(167,108,87,.20);color:#8c5745;text-align:center;font:400 13px var(--serif)}
 .error.show{display:block}
+.saved-notice{display:none;margin-top:11px;padding:10px 12px;border-radius:11px;background:#eef3ea;border:1px solid rgba(89,105,77,.18);color:var(--olive2);text-align:center;font:400 13px var(--serif)}
+.saved-notice.show{display:block}
 
-/* 3 — INVITATION REVEAL */
+/* 3 — INVITATION PERSONNALISÉE */
 .invite-paper{border-radius:255px 255px 28px 28px;padding:18px;overflow:hidden}
 .invite-paper::before{content:"";position:absolute;inset:9px;border:1px solid rgba(184,135,105,.58);border-radius:245px 245px 23px 23px;pointer-events:none;z-index:3}
 .invite-paper::after{content:"";position:absolute;inset:19px;border:1px solid rgba(203,167,126,.20);border-radius:235px 235px 18px 18px;pointer-events:none;z-index:3}
@@ -150,7 +137,11 @@ input:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(15
 .names{font:400 clamp(62px,15vw,94px)/.76 var(--script);color:var(--olive2);margin:7px 0 12px;text-align:center}
 .names .name-line{display:block}
 .names .and{display:block;font:400 33px/1 var(--serif);color:var(--rose);margin:14px 0 9px}
-.inv-copy{max-width:415px;font:400 20px/1.53 var(--serif);color:#665c51;margin:12px 0 14px}
+.recipient-card{width:100%;max-width:430px;margin:7px 0 11px;padding:14px 17px;border-radius:17px;border:1px solid rgba(184,135,105,.21);background:rgba(255,253,249,.78)}
+.recipient-label{font-size:7px;letter-spacing:.19em;text-transform:uppercase;color:var(--rose);margin-bottom:7px}
+.recipient-names{font:500 19px/1.45 var(--serif);color:var(--ink)}
+.recipient-names span{display:block}
+.inv-copy{max-width:415px;font:400 20px/1.53 var(--serif);color:#665c51;margin:11px 0 14px}
 .invite-scope{max-width:430px;margin:0 0 22px;padding:11px 16px;border-radius:14px;background:rgba(225,231,220,.54);border:1px solid rgba(89,105,77,.18);font:500 15px/1.45 var(--serif);color:var(--olive2)}
 .date-line{font:500 22px var(--serif);letter-spacing:.13em;text-transform:uppercase;color:var(--olive);margin-bottom:20px}
 .reveal-block{width:100%;max-width:440px;display:grid;gap:11px;margin-top:4px}
@@ -163,12 +154,31 @@ input:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(15
 .event-kicker{font-size:7px;letter-spacing:.17em;text-transform:uppercase;color:var(--rose)}
 .event-title{font:500 20px var(--serif);margin-top:2px}
 .event-meta{font-size:10px;line-height:1.55;color:var(--bronze);margin-top:3px}
-.photo-slot{
-  width:100%;height:150px;border-radius:14px;overflow:hidden;border:1px solid rgba(184,135,105,.18);
-  background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 14px var(--serif);margin-top:8px
-}
+.photo-slot{width:100%;height:170px;border-radius:14px;overflow:hidden;border:1px solid rgba(184,135,105,.18);background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 14px var(--serif);margin-top:8px}
 .photo-slot img{width:100%;height:100%;object-fit:cover;display:block}
-.to-rsvp{margin-top:20px}
+.event-actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;margin-top:1px}
+.mini-action{flex:1 1 150px;min-height:38px;border-radius:999px;border:1px solid rgba(89,105,77,.22);background:#fffdf9;color:var(--olive2);display:flex;align-items:center;justify-content:center;gap:7px;font:500 8px var(--sans);letter-spacing:.09em;text-transform:uppercase;padding:10px 12px;box-shadow:none}
+.mini-action:hover{background:#f3f6f0}
+.to-rsvp{margin-top:20px;max-width:440px}
+
+/* Apparition personnalisée douce */
+.reveal-step{opacity:0;transform:translateY(8px)}
+.invite-inner.personalized-ready .reveal-step{animation:personalReveal .72s cubic-bezier(.16,1,.3,1) forwards}
+.invite-inner.personalized-ready .reveal-step:nth-of-type(1){animation-delay:.03s}
+.invite-inner.personalized-ready .reveal-step:nth-of-type(2){animation-delay:.10s}
+.invite-inner.personalized-ready .reveal-step:nth-of-type(3){animation-delay:.17s}
+.invite-inner.personalized-ready .reveal-step:nth-of-type(4){animation-delay:.25s}
+.invite-inner.personalized-ready .reveal-step:nth-of-type(5){animation-delay:.33s}
+.invite-inner.personalized-ready .reveal-step:nth-of-type(6){animation-delay:.41s}
+@keyframes personalReveal{to{opacity:1;transform:translateY(0)}}
+
+.practical-section{width:100%;max-width:440px;margin-top:15px;text-align:left}
+.practical-title{font:500 20px var(--serif);color:var(--olive2);text-align:center;margin-bottom:9px}
+.practical-list{display:grid;gap:8px}
+.practical-item{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:11px 12px;border:1px solid rgba(184,135,105,.16);border-radius:14px;background:rgba(255,253,249,.76)}
+.practical-icon{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--sage2);color:var(--olive)}
+.practical-item strong{display:block;font:500 15px var(--serif);color:var(--ink)}
+.practical-item span{display:block;margin-top:2px;font-size:10px;line-height:1.5;color:var(--bronze)}
 
 /* 4 — RSVP */
 .rsvp-paper{border-radius:28px;padding:30px 22px;border:1px solid rgba(184,135,105,.30);overflow:hidden}
@@ -188,18 +198,19 @@ input:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(15
 .plabel{display:flex;align-items:center;gap:6px;font:500 14px var(--serif)}
 .plabel i{color:var(--rose)}
 .choices{display:flex;gap:5px}
-.choices button{min-width:42px;border:1px solid rgba(184,135,105,.22);border-radius:999px;background:white;padding:6px;color:var(--bronze);font:500 7px var(--sans);text-transform:uppercase}
+.choices button{min-width:45px;border:1px solid rgba(184,135,105,.22);border-radius:999px;background:white;padding:7px;color:var(--bronze);font:500 7px var(--sans);text-transform:uppercase;transition:.18s ease}
 .choices .yes.on{background:#eef3ea;border-color:var(--olive);color:var(--olive2)}
 .choices .no.on{background:#faf0eb;border-color:var(--red);color:#8c5745}
 .meal-extra{display:none;margin-top:9px;padding-top:9px;border-top:1px dashed rgba(184,135,105,.22)}
 .meal-extra.show{display:block}
 .meal-extra label{display:block;margin-bottom:5px;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--bronze)}
 textarea{min-height:100px;resize:vertical}
-.confirm{margin-top:16px}.confirm:disabled{opacity:.35;cursor:default}
-.success{text-align:center;padding:38px 8px;position:relative;z-index:4}
-.success i{font-size:42px;color:var(--olive)}
+.confirm{margin-top:16px}.confirm:disabled{opacity:.35;cursor:default;transform:none}
+
+.success{text-align:center;padding:24px 4px 8px;position:relative;z-index:4}
+.success>.success-icon{font-size:42px;color:var(--olive)}
 .success h3{font:500 30px var(--serif);color:var(--olive2);margin-top:8px}
-.success p{font:400 16px/1.55 var(--serif);color:var(--bronze);max-width:420px;margin:8px auto}
+.success>p{font:400 16px/1.55 var(--serif);color:var(--bronze);max-width:420px;margin:8px auto}
 .success-recap{margin-top:25px;text-align:left;display:grid;gap:18px}
 .recap-section{padding-top:18px;border-top:1px solid rgba(184,135,105,.18)}
 .recap-section h4{font:500 22px var(--serif);color:var(--olive2);margin-bottom:10px}
@@ -210,21 +221,45 @@ textarea{min-height:100px;resize:vertical}
 .recap-status span{font-size:8px;letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:999px;background:#f4f0e9;color:var(--bronze);border:1px solid rgba(184,135,105,.14)}
 .recap-status span.yes{background:#eef3ea;color:var(--olive2);border-color:rgba(89,105,77,.16)}
 .recap-status span.no{background:#faf0eb;color:#8c5745;border-color:rgba(167,108,87,.16)}
+.recap-diet{font:italic 13px/1.4 var(--serif);color:var(--bronze);margin-top:7px}
 .recap-events{display:grid;gap:11px}
 .recap-event{overflow:hidden;border:1px solid rgba(184,135,105,.20);border-radius:16px;background:#fffdf9}
 .recap-event-body{padding:13px 14px}
 .recap-event-kicker{font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose)}
 .recap-event-title{font:500 20px var(--serif);color:var(--ink);margin-top:2px}
 .recap-event-address{font-size:10px;line-height:1.55;color:var(--bronze);margin-top:4px}
-.recap-photo{height:140px;background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 13px var(--serif);overflow:hidden}
+.recap-photo{height:150px;background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 13px var(--serif);overflow:hidden}
 .recap-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.recap-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 12px 12px}
+.recap-empty{padding:13px;border-radius:14px;background:#f6f2eb;color:var(--bronze);font:italic 14px/1.45 var(--serif);text-align:center}
+.edit-btn{margin-top:18px;background:transparent;color:var(--olive2);border:1px solid rgba(89,105,77,.28);box-shadow:none}
 
+@media(max-height:760px){
+  #layer1{padding-top:14px;padding-bottom:14px}
+  .cover{max-width:470px}
+  .kicker{margin-bottom:12px}
+  .envelope-wrap{width:min(78vw,380px)}
+  .cover-note{margin-top:13px;font-size:16px}
+  .open-btn{margin-top:11px;padding:12px 18px}
+}
 @media(max-width:460px){
   .layer{padding:13px 10px}
   .gate-paper,.rsvp-paper{padding-left:16px;padding-right:16px}
   .invite-paper{padding:12px}
-  .invite-inner{min-height:735px;padding:58px 20px 42px}
+  .invite-inner{min-height:735px;padding:58px 19px 42px}
   .names{font-size:64px}
+  .photo-slot{height:155px}
+  .event-card{grid-template-columns:52px 1fr;padding:13px}
+  .event-icon{width:44px;height:44px;font-size:20px}
+  .event-actions{gap:6px}
+  .mini-action{flex-basis:100%;min-height:40px}
+  .person-event{grid-template-columns:1fr;gap:7px}
+  .choices{justify-content:flex-start}
+  .choices button{min-width:58px}
+  .back{top:12px;left:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
@@ -232,9 +267,9 @@ textarea{min-height:100px;resize:vertical}
 <body>
 <main class="app">
 
-<!-- COUCHE 1 : ENVELOPPE -->
+<!-- 1 — ENVELOPPE -->
 <section class="layer active" id="layer1">
-<div class="cover">
+  <div class="cover">
     <div class="kicker">Une invitation vous est destinée</div>
 
     <div class="envelope-wrap">
@@ -261,13 +296,12 @@ textarea{min-height:100px;resize:vertical}
     <p class="cover-note">Une journée pensée avec amour,<br>à ouvrir doucement.</p>
     <button class="btn open-btn" id="openBtn" onclick="openEnvelope()">Ouvrir l’enveloppe</button>
   </div>
-  <div class="layer-count">1 / 4 · L’enveloppe</div>
 </section>
 
-<!-- COUCHE 2 : NOM DE FAMILLE -->
+<!-- 2 — IDENTIFICATION -->
 <section class="layer" id="layer2">
-  <button class="back" onclick="showLayer(1)" aria-label="Retour"><i class="ti ti-arrow-left"></i></button>
-<div class="paper gate-paper">
+  <button class="back" onclick="navigateTo(1)" aria-label="Retour"><i class="ti ti-arrow-left"></i></button>
+  <div class="paper gate-paper">
     <div class="gate-head">
       <div class="mini">Votre invitation</div>
       <h1>
@@ -275,64 +309,62 @@ textarea{min-height:100px;resize:vertical}
         <span class="and-line">&amp;</span>
         <span class="name-line">Christel</span>
       </h1>
-      <p>
-        Pour afficher l’invitation qui vous est destinée, saisissez simplement votre nom de famille.
-      </p>
+      <p>Pour afficher l’invitation qui vous est destinée, saisissez simplement votre nom de famille.</p>
     </div>
 
     <div class="field">
-      <label>Nom de famille</label>
+      <label for="familyName">Nom de famille</label>
       <input id="familyName" type="text" placeholder="Ex : Muyinga" autocomplete="family-name"
              oninput="clearError()" onkeydown="if(event.key==='Enter')findFamily()">
     </div>
 
     <button class="btn" onclick="findFamily()">Découvrir mon invitation</button>
-    <div class="error" id="familyError">
-      Nous ne trouvons pas d’invitation sous ce nom. Vérifiez l’orthographe ou contactez les mariés.
-    </div>
+    <div class="error" id="familyError">Nous ne trouvons pas d’invitation sous ce nom. Vérifiez l’orthographe ou contactez les mariés.</div>
+    <div class="saved-notice" id="savedNotice">Une réponse précédente a été retrouvée sur cet appareil. Vous pourrez la consulter ou la modifier.</div>
   </div>
   <div class="layer-count">2 / 4 · Identification</div>
 </section>
 
-<!-- COUCHE 3 : INVITATION PERSONNALISÉE -->
+<!-- 3 — INVITATION PERSONNALISÉE -->
 <section class="layer" id="layer3">
-<div class="paper invite-paper">
-    <div class="invite-inner">
-      <div class="invite-mini">Nous nous marions</div>
-      <div class="family-pill" id="familyPill">Famille Muyinga</div>
+  <!-- Pas de bouton retour vers l'identification une fois le nom validé. -->
+  <div class="paper invite-paper">
+    <div class="invite-inner" id="inviteInner">
+      <div class="invite-mini reveal-step">Nous nous marions</div>
+      <div class="family-pill reveal-step" id="familyPill">Votre invitation</div>
 
-      <div class="names">
+      <div class="names reveal-step">
         <span class="name-line">Timothée</span>
         <span class="and">&amp;</span>
         <span class="name-line">Christel</span>
       </div>
 
-      <p class="inv-copy" id="inviteCopy">
-        Nous serions très heureux de partager avec vous cette journée d’amour,
-        de famille et de célébration.
-      </p>
-
-      <div class="invite-scope" id="inviteScope">
-        Votre invitation comprend la cérémonie civile ainsi que la réception et le repas.
+      <div class="recipient-card reveal-step">
+        <div class="recipient-label">Cette invitation est destinée à</div>
+        <div class="recipient-names" id="recipientNames"></div>
       </div>
 
-      <div class="date-line">Vendredi 13 août 2027</div>
+      <p class="inv-copy reveal-step" id="inviteCopy">Nous serions très heureux de partager avec vous cette journée d’amour, de famille et de célébration.</p>
 
-      <div class="reveal-block">
+      <div class="invite-scope reveal-step" id="inviteScope">Votre invitation comprend la cérémonie civile ainsi que la réception et le repas.</div>
+
+      <div class="date-line reveal-step">Vendredi 13 août 2027</div>
+
+      <div class="reveal-block reveal-step">
         <article class="event-card" id="mairieCard">
           <div class="event-icon"><i class="ti ti-building-community"></i></div>
           <div>
             <div class="event-kicker">Cérémonie civile</div>
             <div class="event-title">Mairie de Longjumeau</div>
-            <div class="event-meta">
-              156 Rue du Président François Mitterrand<br>
-              91160 Longjumeau<br>
-              <span class="placeholder">Horaire à compléter</span>
-            </div>
+            <div class="event-meta">156 Rue du Président François Mitterrand<br>91160 Longjumeau<br><span>Horaire à compléter</span></div>
           </div>
           <div class="photo-slot" style="grid-column:1/-1">
             <span id="mairiePlaceholder">Photo de la mairie à ajouter</span>
-            <img id="mairiePhoto" src="mairie-longjumeau.jpg" alt="Mairie de Longjumeau" onerror="this.style.display='none';document.getElementById('mairiePlaceholder').style.display='block'">
+            <img id="mairiePhoto" src="mairie-longjumeau.jpg" alt="Mairie de Longjumeau" onload="document.getElementById('mairiePlaceholder').style.display='none'" onerror="this.style.display='none';document.getElementById('mairiePlaceholder').style.display='block'">
+          </div>
+          <div class="event-actions">
+            <a class="mini-action" href="https://www.google.com/maps/search/?api=1&query=156%20Rue%20du%20Pr%C3%A9sident%20Fran%C3%A7ois%20Mitterrand%2091160%20Longjumeau" target="_blank" rel="noopener"><i class="ti ti-map-pin"></i>Itinéraire</a>
+            <button class="mini-action" type="button" onclick="downloadCalendar('mairie')"><i class="ti ti-calendar-plus"></i>Ajouter au calendrier</button>
           </div>
         </article>
 
@@ -341,48 +373,57 @@ textarea{min-height:100px;resize:vertical}
           <div>
             <div class="event-kicker">Réception &amp; repas</div>
             <div class="event-title">Lieu de réception</div>
-            <div class="event-meta">
-              59 rue de Préfontaine<br>
-              45490 Courtempierre
-            </div>
+            <div class="event-meta">59 rue de Préfontaine<br>45490 Courtempierre</div>
           </div>
           <div class="photo-slot" style="grid-column:1/-1">
             <span id="edenPlaceholder">Photo du lieu de réception à ajouter</span>
-            <img id="edenPhoto" src="eden-eloah.jpg" alt="Lieu de réception" onerror="this.style.display='none';document.getElementById('edenPlaceholder').style.display='block'">
+            <img id="edenPhoto" src="eden-eloah.jpg" alt="Lieu de réception" onload="document.getElementById('edenPlaceholder').style.display='none'" onerror="this.style.display='none';document.getElementById('edenPlaceholder').style.display='block'">
+          </div>
+          <div class="event-actions">
+            <a class="mini-action" href="https://www.google.com/maps/search/?api=1&query=59%20rue%20de%20Pr%C3%A9fontaine%2045490%20Courtempierre" target="_blank" rel="noopener"><i class="ti ti-map-pin"></i>Itinéraire</a>
+            <button class="mini-action" type="button" onclick="downloadCalendar('repas')"><i class="ti ti-calendar-plus"></i>Ajouter au calendrier</button>
           </div>
         </article>
       </div>
 
-      <button class="btn to-rsvp" onclick="showLayer(4)">Confirmer notre présence</button>
+      <section class="practical-section reveal-step" id="practicalSection" hidden>
+        <div class="practical-title">Informations pratiques</div>
+        <div class="practical-list" id="practicalList"></div>
+      </section>
+
+      <button class="btn to-rsvp reveal-step" id="toRsvpBtn" onclick="navigateTo(4)">Confirmer notre présence</button>
     </div>
   </div>
   <div class="layer-count">3 / 4 · Invitation personnalisée</div>
 </section>
 
-<!-- COUCHE 4 : RSVP -->
+<!-- 4 — RSVP -->
 <section class="layer" id="layer4">
-  <button class="back" onclick="showLayer(3)" aria-label="Retour"><i class="ti ti-arrow-left"></i></button>
-<div class="paper rsvp-paper">
-    <div class="rsvp-head">
-      <div class="mini">RSVP</div>
-      <h2>Qui sera parmi nous ?</h2>
-      <p>Confirmez la présence de chaque personne inscrite sur votre invitation.</p>
+  <button class="back" id="rsvpBack" onclick="navigateTo(3)" aria-label="Retour à l’invitation"><i class="ti ti-arrow-left"></i></button>
+  <div class="paper rsvp-paper">
+    <div id="rsvpForm">
+      <div class="rsvp-head">
+        <div class="mini">RSVP</div>
+        <h2>Qui sera parmi nous ?</h2>
+        <p>Confirmez la présence de chaque personne inscrite sur votre invitation.</p>
+      </div>
+
+      <div class="people" id="peopleList"></div>
+
+      <div class="field" style="margin-top:18px">
+        <label for="message">Un petit mot pour les mariés <span style="text-transform:none;letter-spacing:0">(facultatif)</span></label>
+        <textarea id="message" placeholder="Vos vœux, un souvenir, quelques mots..."></textarea>
+      </div>
+
+      <button class="btn confirm" id="confirmBtn" onclick="confirmAnswers()" disabled>Confirmer nos réponses</button>
     </div>
-
-    <div class="people" id="peopleList"></div>
-
-    <div class="field" style="margin-top:18px">
-      <label>Un petit mot pour les mariés <span style="text-transform:none;letter-spacing:0">(facultatif)</span></label>
-      <textarea id="message" placeholder="Vos vœux, un souvenir, quelques mots..."></textarea>
-    </div>
-
-    <button class="btn confirm" id="confirmBtn" onclick="confirmAnswers()" disabled>Confirmer nos réponses</button>
 
     <div class="success" id="successBox" hidden>
-      <i class="ti ti-circle-check"></i>
+      <i class="ti ti-circle-check success-icon"></i>
       <h3 id="successTitle">Merci !</h3>
       <p id="successText"></p>
       <div class="success-recap" id="finalRecap"></div>
+      <button class="btn edit-btn" type="button" onclick="editAnswers()"><i class="ti ti-edit"></i>&nbsp; Modifier mes réponses</button>
     </div>
   </div>
   <div class="layer-count">4 / 4 · Votre réponse</div>
@@ -392,36 +433,71 @@ textarea{min-height:100px;resize:vertical}
 
 <script>
 /*
-  V7 — INVITATION PERSONNALISÉE + RÉCAPITULATIF FINAL
-  ------------------------
-  1. On ne montre AUCUN lieu avant le nom de famille.
-  2. Le nom de famille détermine le type d'invitation.
-  3. Un seul site : aucune URL spéciale nécessaire.
-  4. Test Muyinga :
-       Victor — Adulte
-       Karine — Adulte
-       Samuel — Enfant
-       invitation : mairie + repas
-  5. Test YAPO :
-       Autilia YAPO — Adulte
-       invitation : mairie uniquement
+  V10 — SITE MARIAGE
+  --------------------------------------------------
+  - Animation d'enveloppe + transitions adoucies.
+  - Aucun indice avant identification sur les différents types d'invitation.
+  - Invitation nominative et périmètre explicite après identification.
+  - Lieux, photos, itinéraires, export calendrier et informations pratiques.
+  - RSVP individuel + allergies/intolérances/régimes.
+  - Récapitulatif final nominatif avec uniquement les lieux confirmés.
+  - Modification d'une réponse après validation.
+  - Sauvegarde locale temporaire sur le navigateur en attendant la future connexion Google Sheets.
 
-  Images conservées dans le même dossier :
-       mairie-longjumeau.jpg
-       eden-eloah.jpg
+  IMPORTANT : sur GitHub Pages, HOUSEHOLDS reste visible dans le code source.
+  Une vraie protection de la liste des invités nécessitera un stockage externe / backend.
 */
 
+const WEDDING = {
+  dateISO:"2027-08-13",
+  dateDisplay:"Vendredi 13 août 2027",
+  events:{
+    mairie:{
+      label:"Cérémonie civile",
+      title:"Mairie de Longjumeau",
+      address:"156 Rue du Président François Mitterrand, 91160 Longjumeau",
+      addressHtml:"156 Rue du Président François Mitterrand<br>91160 Longjumeau<br>Horaire à compléter",
+      image:"mairie-longjumeau.jpg",
+      imageAlt:"Mairie de Longjumeau",
+      mapUrl:"https://www.google.com/maps/search/?api=1&query=156%20Rue%20du%20Pr%C3%A9sident%20Fran%C3%A7ois%20Mitterrand%2091160%20Longjumeau",
+      calendarTitle:"Mariage de Timothée & Christel — Cérémonie civile"
+    },
+    repas:{
+      label:"Réception & repas",
+      title:"Lieu de réception",
+      address:"59 rue de Préfontaine, 45490 Courtempierre",
+      addressHtml:"59 rue de Préfontaine<br>45490 Courtempierre",
+      image:"eden-eloah.jpg",
+      imageAlt:"Lieu de réception",
+      mapUrl:"https://www.google.com/maps/search/?api=1&query=59%20rue%20de%20Pr%C3%A9fontaine%2045490%20Courtempierre",
+      calendarTitle:"Mariage de Timothée & Christel — Réception et repas"
+    }
+  }
+};
+
+/*
+  Les informations pratiques apparaissent uniquement lorsqu'elles sont renseignées.
+  Exemple à activer plus tard :
+  {icon:"ti ti-car", title:"Stationnement", text:"Parking ...", for:["mairie","complet"]}
+*/
+const PRACTICAL_INFO = [];
+
+/*
+  Deux foyers de TEST pour visualiser les deux cas :
+  - MUYINGA : mairie + réception/repas
+  - YAPO : Autilia YAPO, mairie uniquement
+  La liste complète sera remplacée quand tu me l'enverras.
+*/
 const HOUSEHOLDS = {
   "muyinga": {
     display:"Muyinga",
     type:"complet",
     people:[
-      {id:"victor", first:"Victor", role:"Adulte"},
-      {id:"karine", first:"Karine", role:"Adulte"},
-      {id:"samuel", first:"Samuel", role:"Enfant"}
+      {id:"victor", first:"Victor", last:"Muyinga", role:"Adulte"},
+      {id:"karine", first:"Karine", last:"Muyinga", role:"Adulte"},
+      {id:"samuel", first:"Samuel", last:"Muyinga", role:"Enfant"}
     ]
   },
-
   "yapo": {
     display:"YAPO",
     type:"mairie",
@@ -429,31 +505,12 @@ const HOUSEHOLDS = {
       {id:"autilia", first:"Autilia", last:"YAPO", role:"Adulte"}
     ]
   }
-
-  /*
-  EXEMPLES POUR PLUS TARD :
-
-  "dupont": {
-    display:"Dupont",
-    type:"mairie",
-    people:[
-      {id:"paul", first:"Paul", role:"Adulte"},
-      {id:"anne", first:"Anne", role:"Adulte"}
-    ]
-  },
-
-  "martin": {
-    display:"Martin",
-    type:"repas",
-    people:[
-      {id:"luc", first:"Luc", role:"Adulte"}
-    ]
-  }
-  */
 };
 
 let currentHousehold = null;
+let currentHouseholdKey = "";
 let answers = {};
+let isTransitioning = false;
 
 function normalizeFamily(value){
   return value.normalize("NFD")
@@ -463,45 +520,81 @@ function normalizeFamily(value){
     .replace(/\s+/g," ");
 }
 
-function showLayer(n){
-  document.querySelectorAll(".layer").forEach(x=>x.classList.remove("active"));
-  document.getElementById("layer"+n).classList.add("active");
+function currentLayer(){
+  return document.querySelector(".layer.active");
+}
 
-  if(n===1){
-    const env=document.getElementById("envelope");
-    const btn=document.getElementById("openBtn");
-    env.classList.remove("open1","open2");
-    document.getElementById("layer1").classList.remove("envelope-leaving");
-    btn.disabled=false;
-  }
-
+function activateLayer(n){
+  document.querySelectorAll(".layer").forEach(layer=>layer.classList.remove("active","leaving"));
+  const next=document.getElementById("layer"+n);
+  next.classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
+function navigateTo(n){
+  if(isTransitioning)return;
+  const current=currentLayer();
+  const next=document.getElementById("layer"+n);
+  if(!next || current===next)return;
+
+  isTransitioning=true;
+  if(current)current.classList.add("leaving");
+
+  setTimeout(()=>{
+    if(current)current.classList.remove("active","leaving");
+    next.classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  },330);
+
+  setTimeout(()=>{isTransitioning=false},920);
+
+  if(n===1)resetEnvelope();
+}
+
+function resetEnvelope(){
+  const env=document.getElementById("envelope");
+  const btn=document.getElementById("openBtn");
+  const firstLayer=document.getElementById("layer1");
+  env.classList.remove("open1","open2");
+  firstLayer.classList.remove("envelope-leaving");
+  btn.disabled=false;
+}
+
 function openEnvelope(){
+  if(isTransitioning)return;
   const env=document.getElementById("envelope");
   const btn=document.getElementById("openBtn");
   const firstLayer=document.getElementById("layer1");
   btn.disabled=true;
+  isTransitioning=true;
 
-  // 1. Le rabat s’ouvre d’abord, sans faire bouger le reste.
   env.classList.add("open1");
+  setTimeout(()=>env.classList.add("open2"),720);
+  setTimeout(()=>firstLayer.classList.add("envelope-leaving"),1900);
 
-  // 2. L’invitation monte ensuite de façon progressive.
-  setTimeout(()=>env.classList.add("open2"),620);
-
-  // 3. Quand la carte est sortie, toute la couverture s’efface doucement.
-  setTimeout(()=>firstLayer.classList.add("envelope-leaving"),1750);
-
-  // 4. La page d’identification apparaît seulement après le fondu.
   setTimeout(()=>{
-    showLayer(2);
-    firstLayer.classList.remove("envelope-leaving");
-  },2320);
+    firstLayer.classList.remove("active","envelope-leaving");
+    document.getElementById("layer2").classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  },2520);
+
+  setTimeout(()=>{isTransitioning=false},3200);
 }
 
 function clearError(){
   document.getElementById("familyError").classList.remove("show");
+  document.getElementById("savedNotice").classList.remove("show");
+}
+
+function personFullName(person){
+  const last=person.last || currentHousehold.display;
+  return `${person.first} ${last}`.trim();
+}
+
+function invitationIncludes(eventName){
+  if(!currentHousehold)return false;
+  if(currentHousehold.type==="complet")return true;
+  return currentHousehold.type===eventName;
 }
 
 function findFamily(){
@@ -514,94 +607,141 @@ function findFamily(){
   }
 
   currentHousehold=household;
-  answers={};
-
-  document.getElementById("familyPill").textContent="Famille "+household.display;
-
-  applyHouseholdInvitation();
+  currentHouseholdKey=key;
+  buildInvitation();
   renderPeople();
-  showLayer(3);
+
+  const saved=loadLocalResponse();
+  if(saved){
+    restoreResponse(saved);
+    document.getElementById("savedNotice").classList.add("show");
+  }
+
+  const inner=document.getElementById("inviteInner");
+  inner.classList.remove("personalized-ready");
+  void inner.offsetWidth;
+  inner.classList.add("personalized-ready");
+
+  navigateTo(3);
 }
 
-function applyHouseholdInvitation(){
+function buildInvitation(){
   const mairie=document.getElementById("mairieCard");
   const repas=document.getElementById("repasCard");
   const copy=document.getElementById("inviteCopy");
   const scope=document.getElementById("inviteScope");
+  const pill=document.getElementById("familyPill");
+  const recipients=document.getElementById("recipientNames");
+  const toRsvp=document.getElementById("toRsvpBtn");
 
-  mairie.hidden=false;
-  repas.hidden=false;
+  mairie.hidden=!invitationIncludes("mairie");
+  repas.hidden=!invitationIncludes("repas");
+
+  pill.textContent=currentHousehold.people.length===1 ? personFullName(currentHousehold.people[0]) : "Famille "+currentHousehold.display;
+  recipients.innerHTML=currentHousehold.people.map(person=>`<span>${escapeHtml(personFullName(person))}</span>`).join("");
 
   if(currentHousehold.type==="mairie"){
-    repas.hidden=true;
     copy.textContent="Nous serions très heureux de vous compter parmi nous pour célébrer notre union.";
     scope.textContent="Votre invitation comprend la cérémonie civile à la mairie de Longjumeau.";
   }else if(currentHousehold.type==="repas"){
-    mairie.hidden=true;
     copy.textContent="Nous serions très heureux de vous retrouver pour partager ce moment de célébration avec nous.";
     scope.textContent="Votre invitation comprend la réception et le repas.";
   }else{
     copy.textContent="Nous serions très heureux de partager avec vous cette journée d’amour, de famille et de célébration.";
     scope.textContent="Votre invitation comprend la cérémonie civile ainsi que la réception et le repas.";
   }
+
+  toRsvp.textContent=currentHousehold.people.length===1 ? "Confirmer ma présence" : "Confirmer notre présence";
+  renderPracticalInfo();
+}
+
+function renderPracticalInfo(){
+  const section=document.getElementById("practicalSection");
+  const list=document.getElementById("practicalList");
+  const relevant=PRACTICAL_INFO.filter(item=>{
+    if(!item.for || !item.for.length)return true;
+    return item.for.includes(currentHousehold.type) ||
+      (item.for.includes("mairie") && invitationIncludes("mairie")) ||
+      (item.for.includes("repas") && invitationIncludes("repas"));
+  });
+
+  if(!relevant.length){
+    section.hidden=true;
+    list.innerHTML="";
+    return;
+  }
+
+  list.innerHTML=relevant.map(item=>`
+    <div class="practical-item">
+      <div class="practical-icon"><i class="${escapeHtml(item.icon || 'ti ti-info-circle')}"></i></div>
+      <div><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.text)}</span></div>
+    </div>`).join("");
+  section.hidden=false;
+}
+
+function emptyAnswers(){
+  const state={};
+  currentHousehold.people.forEach(person=>{
+    state[person.id]={
+      mairie:invitationIncludes("mairie") ? null : undefined,
+      repas:invitationIncludes("repas") ? null : undefined,
+      dietary:""
+    };
+  });
+  return state;
 }
 
 function renderPeople(){
   const list=document.getElementById("peopleList");
   list.innerHTML="";
+  answers=emptyAnswers();
+  document.getElementById("message").value="";
+  document.getElementById("rsvpForm").hidden=false;
   document.getElementById("successBox").hidden=true;
-  document.getElementById("confirmBtn").hidden=false;
+  document.getElementById("rsvpBack").hidden=false;
 
   currentHousehold.people.forEach(person=>{
-    answers[person.id]={
-      mairie: currentHousehold.type==="repas" ? undefined : null,
-      repas: currentHousehold.type==="mairie" ? undefined : null,
-      dietary:""
-    };
-
     let events="";
 
-    if(currentHousehold.type!=="repas"){
+    if(invitationIncludes("mairie")){
       events+=`
         <div class="person-event">
           <div class="plabel"><i class="ti ti-building-community"></i>Mairie</div>
           <div class="choices">
-            <button class="yes" id="${person.id}-mairie-y" onclick="setAnswer('${person.id}','mairie',true)">Oui</button>
-            <button class="no" id="${person.id}-mairie-n" onclick="setAnswer('${person.id}','mairie',false)">Non</button>
+            <button type="button" class="yes" id="${person.id}-mairie-y" onclick="setAnswer('${person.id}','mairie',true)">Oui</button>
+            <button type="button" class="no" id="${person.id}-mairie-n" onclick="setAnswer('${person.id}','mairie',false)">Non</button>
           </div>
         </div>`;
     }
 
-    if(currentHousehold.type!=="mairie"){
+    if(invitationIncludes("repas")){
       events+=`
         <div class="person-event">
-          <div class="plabel"><i class="ti ti-glass-full"></i>Réception & repas</div>
+          <div class="plabel"><i class="ti ti-glass-full"></i>Réception &amp; repas</div>
           <div class="choices">
-            <button class="yes" id="${person.id}-repas-y" onclick="setAnswer('${person.id}','repas',true)">Oui</button>
-            <button class="no" id="${person.id}-repas-n" onclick="setAnswer('${person.id}','repas',false)">Non</button>
+            <button type="button" class="yes" id="${person.id}-repas-y" onclick="setAnswer('${person.id}','repas',true)">Oui</button>
+            <button type="button" class="no" id="${person.id}-repas-n" onclick="setAnswer('${person.id}','repas',false)">Non</button>
           </div>
         </div>
         <div class="meal-extra" id="${person.id}-extra">
-          <label>Allergie ou régime pour ${person.first} (facultatif)</label>
-          <input type="text" placeholder="Ex : sans lactose, allergie..." oninput="answers['${person.id}'].dietary=this.value">
+          <label for="${person.id}-dietary">Allergie, intolérance ou régime alimentaire pour ${escapeHtml(person.first)} <span style="text-transform:none;letter-spacing:0">(facultatif)</span></label>
+          <input id="${person.id}-dietary" type="text" placeholder="Ex : sans lactose, végétarien, allergie..." oninput="answers['${person.id}'].dietary=this.value">
         </div>`;
     }
 
     const roleClass=person.role==="Enfant" ? "role child" : "role";
     const roleIcon=person.role==="Enfant" ? "ti ti-mood-kid" : "ti ti-user";
-
     const card=document.createElement("article");
     card.className="person";
     card.innerHTML=`
       <div class="person-head">
-        <div class="avatar">${person.first.charAt(0)}</div>
+        <div class="avatar">${escapeHtml(person.first.charAt(0))}</div>
         <div class="person-title">
-          <div class="pname">${person.first}</div>
-          <span class="${roleClass}"><i class="${roleIcon}"></i>${person.role}</span>
+          <div class="pname">${escapeHtml(personFullName(person))}</div>
+          <span class="${roleClass}"><i class="${roleIcon}"></i>${escapeHtml(person.role)}</span>
         </div>
       </div>
-      ${events}
-    `;
+      ${events}`;
     list.appendChild(card);
   });
 
@@ -610,11 +750,10 @@ function renderPeople(){
 
 function setAnswer(id,eventName,value){
   answers[id][eventName]=value;
-
-  const y=document.getElementById(`${id}-${eventName}-y`);
-  const n=document.getElementById(`${id}-${eventName}-n`);
-  if(y)y.classList.toggle("on",value===true);
-  if(n)n.classList.toggle("on",value===false);
+  const yes=document.getElementById(`${id}-${eventName}-y`);
+  const no=document.getElementById(`${id}-${eventName}-n`);
+  if(yes)yes.classList.toggle("on",value===true);
+  if(no)no.classList.toggle("on",value===false);
 
   if(eventName==="repas"){
     const extra=document.getElementById(`${id}-extra`);
@@ -626,55 +765,93 @@ function setAnswer(id,eventName,value){
 
 function validateAnswers(){
   if(!currentHousehold)return;
-
   const complete=currentHousehold.people.every(person=>{
     const a=answers[person.id];
-    if(currentHousehold.type==="mairie")return a.mairie!==null;
-    if(currentHousehold.type==="repas")return a.repas!==null;
-    return a.mairie!==null && a.repas!==null;
+    if(invitationIncludes("mairie") && a.mairie===null)return false;
+    if(invitationIncludes("repas") && a.repas===null)return false;
+    return true;
   });
-
   document.getElementById("confirmBtn").disabled=!complete;
 }
 
-function personFullName(person){
-  const last=person.last || currentHousehold.display;
-  return `${person.first} ${last}`.trim();
+function applyAnswerVisuals(){
+  currentHousehold.people.forEach(person=>{
+    const a=answers[person.id];
+    ["mairie","repas"].forEach(eventName=>{
+      if(a[eventName]===undefined)return;
+      const yes=document.getElementById(`${person.id}-${eventName}-y`);
+      const no=document.getElementById(`${person.id}-${eventName}-n`);
+      if(yes)yes.classList.toggle("on",a[eventName]===true);
+      if(no)no.classList.toggle("on",a[eventName]===false);
+    });
+    const dietary=document.getElementById(`${person.id}-dietary`);
+    const extra=document.getElementById(`${person.id}-extra`);
+    if(dietary)dietary.value=a.dietary || "";
+    if(extra)extra.classList.toggle("show",a.repas===true);
+  });
+  validateAnswers();
+}
+
+function storageKey(){
+  return `tc-wedding-rsvp:${currentHouseholdKey}`;
+}
+
+function saveLocalResponse(){
+  try{
+    localStorage.setItem(storageKey(),JSON.stringify({
+      answers,
+      message:document.getElementById("message").value,
+      confirmedAt:new Date().toISOString()
+    }));
+  }catch(e){/* Le site continue de fonctionner si le stockage local est bloqué. */}
+}
+
+function loadLocalResponse(){
+  try{
+    const raw=localStorage.getItem(storageKey());
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){return null}
+}
+
+function restoreResponse(saved){
+  if(!saved || !saved.answers)return;
+  currentHousehold.people.forEach(person=>{
+    if(!saved.answers[person.id])return;
+    if(invitationIncludes("mairie") && typeof saved.answers[person.id].mairie==="boolean")answers[person.id].mairie=saved.answers[person.id].mairie;
+    if(invitationIncludes("repas") && typeof saved.answers[person.id].repas==="boolean")answers[person.id].repas=saved.answers[person.id].repas;
+    answers[person.id].dietary=saved.answers[person.id].dietary || "";
+  });
+  document.getElementById("message").value=saved.message || "";
+  applyAnswerVisuals();
 }
 
 function answerBadge(label,value){
   if(value===undefined)return "";
   const cls=value===true ? "yes" : "no";
   const txt=value===true ? "Oui" : "Non";
-  return `<span class="${cls}">${label} · ${txt}</span>`;
+  return `<span class="${cls}">${escapeHtml(label)} · ${txt}</span>`;
+}
+
+function eventHasAttendee(eventName){
+  return currentHousehold.people.some(person=>answers[person.id] && answers[person.id][eventName]===true);
 }
 
 function recapEventHtml(kind){
-  if(kind==="mairie"){
-    return `
-      <article class="recap-event">
-        <div class="recap-event-body">
-          <div class="recap-event-kicker">Cérémonie civile</div>
-          <div class="recap-event-title">Mairie de Longjumeau</div>
-          <div class="recap-event-address">156 Rue du Président François Mitterrand<br>91160 Longjumeau<br>Horaire à compléter</div>
-        </div>
-        <div class="recap-photo">
-          <span>Photo de la mairie à ajouter</span>
-          <img src="mairie-longjumeau.jpg" alt="Mairie de Longjumeau" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'">
-        </div>
-      </article>`;
-  }
-
+  const event=WEDDING.events[kind];
   return `
     <article class="recap-event">
       <div class="recap-event-body">
-        <div class="recap-event-kicker">Réception &amp; repas</div>
-        <div class="recap-event-title">Lieu de réception</div>
-        <div class="recap-event-address">59 rue de Préfontaine<br>45490 Courtempierre</div>
+        <div class="recap-event-kicker">${escapeHtml(event.label)}</div>
+        <div class="recap-event-title">${escapeHtml(event.title)}</div>
+        <div class="recap-event-address">${event.addressHtml}</div>
       </div>
       <div class="recap-photo">
-        <span>Photo du lieu de réception à ajouter</span>
-        <img src="eden-eloah.jpg" alt="Lieu de réception" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'">
+        <span>Photo du lieu à ajouter</span>
+        <img src="${escapeHtml(event.image)}" alt="${escapeHtml(event.imageAlt)}" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'">
+      </div>
+      <div class="recap-actions">
+        <a class="mini-action" href="${event.mapUrl}" target="_blank" rel="noopener"><i class="ti ti-map-pin"></i>Itinéraire</a>
+        <button class="mini-action" type="button" onclick="downloadCalendar('${kind}')"><i class="ti ti-calendar-plus"></i>Calendrier</button>
       </div>
     </article>`;
 }
@@ -684,49 +861,120 @@ function renderFinalRecap(){
 
   const peopleHtml=currentHousehold.people.map(person=>{
     const a=answers[person.id];
+    const diet=a.dietary && a.repas===true ? `<div class="recap-diet">Repas : ${escapeHtml(a.dietary)}</div>` : "";
     return `
       <div class="recap-person">
-        <div class="recap-person-name">${personFullName(person)}</div>
+        <div class="recap-person-name">${escapeHtml(personFullName(person))}</div>
         <div class="recap-status">
-          ${currentHousehold.type!=="repas" ? answerBadge("Mairie",a.mairie) : ""}
-          ${currentHousehold.type!=="mairie" ? answerBadge("Réception & repas",a.repas) : ""}
+          ${invitationIncludes("mairie") ? answerBadge("Mairie",a.mairie) : ""}
+          ${invitationIncludes("repas") ? answerBadge("Réception & repas",a.repas) : ""}
         </div>
+        ${diet}
       </div>`;
   }).join("");
 
   let eventsHtml="";
-  if(currentHousehold.type!=="repas")eventsHtml+=recapEventHtml("mairie");
-  if(currentHousehold.type!=="mairie")eventsHtml+=recapEventHtml("repas");
+  if(invitationIncludes("mairie") && eventHasAttendee("mairie"))eventsHtml+=recapEventHtml("mairie");
+  if(invitationIncludes("repas") && eventHasAttendee("repas"))eventsHtml+=recapEventHtml("repas");
+  if(!eventsHtml)eventsHtml='<div class="recap-empty">Aucun lieu n’est affiché ici puisque personne n’a confirmé sa présence.</div>';
 
   recap.innerHTML=`
     <section class="recap-section">
-      <h4>Récapitulatif de votre réponse</h4>
+      <h4>Personnes invitées</h4>
       <div class="recap-people">${peopleHtml}</div>
     </section>
     <section class="recap-section">
-      <h4>Informations de votre invitation</h4>
+      <h4>Vos lieux confirmés</h4>
       <div class="recap-events">${eventsHtml}</div>
     </section>`;
 }
 
 function confirmAnswers(){
+  if(document.getElementById("confirmBtn").disabled)return;
+
   const attending=currentHousehold.people.filter(person=>{
     const a=answers[person.id];
-    if(currentHousehold.type==="mairie")return a.mairie===true;
-    if(currentHousehold.type==="repas")return a.repas===true;
-    return a.mairie===true || a.repas===true;
+    return (invitationIncludes("mairie") && a.mairie===true) || (invitationIncludes("repas") && a.repas===true);
   }).map(person=>person.first);
 
-  document.getElementById("successTitle").textContent="Merci, famille "+currentHousehold.display+" !";
-  document.getElementById("successText").textContent=
-    attending.length
-      ? "Votre réponse est bien prise en compte pour "+attending.join(", ")+". Timothée et Christel ont hâte de vous retrouver."
-      : "Votre réponse est bien prise en compte. Merci d’avoir pris le temps de nous répondre.";
+  saveLocalResponse();
+  document.getElementById("successTitle").textContent=currentHousehold.people.length===1 ? "Merci !" : "Merci, famille "+currentHousehold.display+" !";
+  document.getElementById("successText").textContent=attending.length
+    ? "Votre réponse est bien prise en compte pour "+attending.join(", ")+". Voici votre récapitulatif."
+    : "Votre réponse est bien prise en compte. Merci d’avoir pris le temps de nous répondre.";
 
   renderFinalRecap();
+  document.getElementById("rsvpForm").hidden=true;
   document.getElementById("successBox").hidden=false;
-  document.getElementById("confirmBtn").hidden=true;
+  document.getElementById("rsvpBack").hidden=true;
   document.getElementById("successBox").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function editAnswers(){
+  document.getElementById("successBox").hidden=true;
+  document.getElementById("rsvpForm").hidden=false;
+  document.getElementById("rsvpBack").hidden=false;
+  applyAnswerVisuals();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function downloadCalendar(kind){
+  const event=WEDDING.events[kind];
+  if(!event)return;
+
+  const date=WEDDING.dateISO.replaceAll("-","");
+  const endDate=nextDateYYYYMMDD(WEDDING.dateISO);
+  const description=kind==="mairie"
+    ? "Cérémonie civile du mariage de Timothée et Christel. Horaire à compléter."
+    : "Réception et repas du mariage de Timothée et Christel.";
+
+  const ics=[
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Timothee-Christel//Mariage//FR",
+    "CALSCALE:GREGORIAN",
+    "BEGIN:VEVENT",
+    `UID:${kind}-${date}@timothee-christel`,
+    `DTSTART;VALUE=DATE:${date}`,
+    `DTEND;VALUE=DATE:${endDate}`,
+    `SUMMARY:${icsEscape(event.calendarTitle)}`,
+    `LOCATION:${icsEscape(event.address)}`,
+    `DESCRIPTION:${icsEscape(description)}`,
+    "END:VEVENT",
+    "END:VCALENDAR"
+  ].join("\r\n");
+
+  const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download=`mariage-timothee-christel-${kind}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+function nextDateYYYYMMDD(iso){
+  const d=new Date(iso+"T12:00:00");
+  d.setDate(d.getDate()+1);
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,"0");
+  const day=String(d.getDate()).padStart(2,"0");
+  return `${y}${m}${day}`;
+}
+
+function icsEscape(value){
+  return String(value).replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;");
+}
+
+function escapeHtml(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 </script>
 </body>
