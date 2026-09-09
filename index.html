@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#F7F1E7">
+<meta name="theme-color" content="#f7f2e9">
 <title>Timothée & Christel — 13 août 2027</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,940 +14,206 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ivory:#F7F1E7;
-  --paper:#FFFCF8;
-  --paper-2:#FBF7F0;
-  --cream:#EEE4D5;
-  --sage:#8F9F81;
-  --sage-soft:#DDE5D8;
-  --olive:#566349;
-  --olive-dark:#384533;
-  --rose:#B88968;
-  --rose-soft:#D8BAA2;
-  --gold:#CBA97E;
-  --bronze:#836E5C;
-  --ink:#2F342B;
-  --muted:#9C8F82;
-  --danger:#AA6E58;
-  --serif:"Cormorant Garamond", Georgia, serif;
-  --script:"Allura", cursive;
-  --sans:"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --shadow:0 28px 80px rgba(61,53,43,.14);
-  --shadow-soft:0 14px 32px rgba(61,53,43,.08);
+  --ivory:#f7f2e9;--paper:#fffdf9;--cream:#eee5d7;--sage:#98a58b;
+  --sage2:#e1e7dc;--olive:#59694d;--olive2:#3c4935;--rose:#b88769;
+  --gold:#cba77e;--bronze:#806d5f;--ink:#30342d;--muted:#9b8e82;
+  --red:#a76c57;--serif:"Cormorant Garamond",Georgia,serif;
+  --script:"Allura",cursive;--sans:"Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --shadow:0 26px 75px rgba(61,54,45,.13);
 }
-
 html{scroll-behavior:smooth}
 body{
-  min-height:100vh;
-  overflow-x:hidden;
-  font-family:var(--sans);
-  color:var(--ink);
-  background:
-    radial-gradient(circle at 12% 12%, rgba(184,137,104,.10), transparent 26%),
-    radial-gradient(circle at 88% 88%, rgba(86,99,73,.10), transparent 28%),
-    var(--ivory);
+  min-height:100vh;background:
+  radial-gradient(circle at 14% 8%,rgba(184,135,105,.09),transparent 28%),
+  radial-gradient(circle at 88% 90%,rgba(89,105,77,.10),transparent 30%),
+  var(--ivory);font-family:var(--sans);color:var(--ink);overflow-x:hidden
 }
-body::before{
-  content:"";
-  position:fixed; inset:0; pointer-events:none; z-index:100;
-  opacity:.10;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(62,53,43,.04) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.18) 0 1px, transparent 1px 5px);
-  mix-blend-mode:multiply;
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.09;
+  background-image:repeating-linear-gradient(0deg,rgba(55,50,43,.04) 0 1px,transparent 1px 4px);
 }
+button,input,textarea{font:inherit}[hidden]{display:none!important}button{cursor:pointer}
 
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-[hidden]{display:none!important}
+.app{width:min(100%,660px);min-height:100vh;margin:0 auto;position:relative;overflow:hidden;background:rgba(255,253,249,.56);box-shadow:0 0 90px rgba(55,48,38,.07)}
 
-.app{
-  width:min(100%, 660px);
-  min-height:100vh;
-  margin:0 auto;
-  position:relative;
-  overflow:hidden;
-  background:rgba(255,252,248,.58);
-  box-shadow:0 0 90px rgba(55,48,38,.08);
-}
-
-/* ===== DECOR GENERAL ===== */
-.spark{
-  position:absolute;
-  z-index:1;
-  font-size:12px;
-  color:rgba(203,169,126,.85);
-  opacity:.42;
-  pointer-events:none;
-}
-.sp1{top:14%;left:7%} .sp2{top:22%;right:9%} .sp3{top:39%;left:6%}
-.sp4{top:56%;right:5%} .sp5{top:73%;left:8%} .sp6{top:85%;right:10%}
-
-.dot{
-  position:absolute;
-  z-index:1;
-  width:4px;height:4px;border-radius:50%;
-  background:rgba(184,137,104,.42);
-}
-.dt1{top:18%;left:16%} .dt2{top:27%;right:17%}
-.dt3{top:48%;left:12%} .dt4{top:69%;right:12%}
-.dt5{top:80%;left:18%}
-
-/* ===== FLORAL SVG ===== */
-.floral{
-  position:absolute;
-  z-index:1;
-  pointer-events:none;
-  filter:drop-shadow(0 10px 14px rgba(55,63,47,.04));
-  opacity:.98;
-}
-.floral.tl{width:320px;top:-42px;left:-92px;transform:rotate(-8deg)}
-.floral.tr{width:280px;top:20px;right:-95px;transform:rotate(67deg) scaleX(-1);opacity:.86}
-.floral.bl{width:270px;bottom:46px;left:-92px;transform:rotate(205deg);opacity:.82}
-.floral.br{width:335px;bottom:-58px;right:-98px;transform:rotate(176deg)}
-
-.stem{stroke:#C5987B;stroke-width:1.3;fill:none;stroke-linecap:round}
-.stem-soft{stroke:#D7B8A2;stroke-width:1;fill:none;stroke-linecap:round}
-.leaf-main{fill:#5E6C52}
-.leaf-sage{fill:#90A181}
-.leaf-soft{fill:#B0BBA4}
-.berry{fill:#DAB39B}
-.petal-outer{fill:#FFFDF9;stroke:#DFCFC0;stroke-width:.8}
-.petal-mid{fill:#FAF4ED;stroke:#D8C6B7;stroke-width:.65}
-.petal-inner{fill:#F4E8DA;stroke:#D7BFA7;stroke-width:.55}
-.pollen{fill:#CBA97E}
-.bud{fill:#F4ECE1;stroke:#DCCBBC;stroke-width:.65}
-
-/* ===== COUCHES ===== */
-.layer{
-  min-height:100svh;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:22px 14px;
-  position:relative;
-  animation:fadeLayer .55s ease both;
-}
+.layer{min-height:100svh;display:none;align-items:center;justify-content:center;position:relative;padding:20px 14px;animation:layerIn .48s ease both}
 .layer.active{display:flex}
-@keyframes fadeLayer{
-  from{opacity:0;transform:scale(.988)}
-  to{opacity:1;transform:none}
+@keyframes layerIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.paper{width:100%;max-width:585px;position:relative;z-index:5;background:rgba(255,253,249,.96);box-shadow:var(--shadow)}
+.back{
+  position:absolute;top:18px;left:18px;z-index:15;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(184,135,105,.25);background:rgba(255,253,249,.88);color:var(--olive2);
+  display:grid;place-items:center;font-size:18px;box-shadow:0 8px 20px rgba(70,60,50,.06)
 }
-@keyframes rise{
-  from{opacity:0;transform:translateY(18px)}
-  to{opacity:1;transform:none}
-}
+.layer-count{position:absolute;left:0;right:0;bottom:13px;text-align:center;font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(128,109,95,.65);z-index:10}
 
-.layer-index{
-  position:absolute;
-  left:0; right:0; bottom:14px;
-  text-align:center;
-  z-index:10;
-  font-size:7px;
-  letter-spacing:.20em;
-  text-transform:uppercase;
-  color:rgba(131,110,92,.70);
-}
+/* floral image assets */
+.floral-img{position:absolute;z-index:1;pointer-events:none;user-select:none}
+.floral-img.tl{width:300px;top:-36px;left:-58px}
+.floral-img.br{width:310px;right:-66px;bottom:-50px}
+.floral-img.alt-tl{width:270px;top:-32px;left:-60px}
+.floral-img.alt-br{width:290px;right:-60px;bottom:-48px}
 
-.paper{
-  width:100%;
-  max-width:590px;
-  position:relative;
-  z-index:5;
-  background:
-    linear-gradient(rgba(255,252,248,.95), rgba(255,252,248,.93)),
-    radial-gradient(circle at 28% 10%, rgba(203,169,126,.16), transparent 28%);
-  box-shadow:var(--shadow);
-}
-
-/* ===== LAYER 1 : ENVELOPPE ===== */
-.envelope-stage{
-  width:100%;
-  max-width:570px;
-  position:relative;
-  z-index:6;
-  text-align:center;
-}
-.envelope-kicker{
-  font-size:9px;
-  letter-spacing:.34em;
-  text-transform:uppercase;
-  color:var(--bronze);
-  margin-bottom:18px;
-}
-.envelope-note{
-  margin-top:22px;
-  color:var(--bronze);
-  font:italic 18px/1.5 var(--serif);
-}
-.open-btn{
-  margin-top:18px;
-  border:none;
-  border-radius:999px;
-  padding:14px 22px;
-  background:var(--olive);
-  color:#fff;
-  font:500 9px var(--sans);
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  box-shadow:0 8px 22px rgba(86,99,73,.17);
-}
-
+/* 1 — ENVELOPE */
+.cover{width:100%;max-width:560px;text-align:center;position:relative;z-index:5}
+.kicker{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze);margin-bottom:20px}
+.envelope-wrap{width:100%;max-width:520px;margin:0 auto;position:relative}
 .envelope{
-  width:100%;
-  aspect-ratio:1.45/1;
-  position:relative;
-  perspective:1200px;
-  filter:drop-shadow(0 25px 30px rgba(61,53,43,.14));
+  width:100%;aspect-ratio:1.55/1;position:relative;perspective:1200px;
+  filter:drop-shadow(0 23px 27px rgba(64,54,45,.15));
 }
-.envelope-scene{
-  position:absolute; inset:0;
-  overflow:visible;
-}
-
 .env-back{
-  position:absolute; inset:0;
-  background:linear-gradient(180deg, #F0E5D6, #E9DBC9);
-  border:1px solid rgba(184,137,104,.34);
-  border-radius:8px;
-  z-index:1;
+  position:absolute;inset:0;border-radius:9px;background:linear-gradient(180deg,#f0e5d7,#e8d9c7);
+  border:1px solid rgba(184,135,105,.30);z-index:1;overflow:hidden
 }
 .env-liner{
-  position:absolute;
-  left:9px; right:9px; top:9px;
-  height:58%;
-  z-index:2;
+  position:absolute;left:7px;right:7px;top:7px;height:56%;z-index:2;
   clip-path:polygon(0 0,100% 0,50% 100%);
-  background:
-    radial-gradient(circle at 18% 22%, rgba(143,159,129,.72) 0 4%, transparent 4.6%),
-    radial-gradient(circle at 39% 14%, rgba(94,108,82,.72) 0 4.2%, transparent 4.7%),
-    radial-gradient(circle at 71% 16%, rgba(143,159,129,.74) 0 4%, transparent 4.7%),
-    radial-gradient(circle at 84% 26%, rgba(94,108,82,.72) 0 4.2%, transparent 4.7%),
-    linear-gradient(180deg,#E7EEE1,#D8E2D2);
-  opacity:.96;
+  background:linear-gradient(135deg,#dfe7db,#cdd9c7);
 }
-
-.invite-slip{
-  position:absolute;
-  left:11%; right:11%;
-  bottom:11%;
-  height:72%;
-  z-index:3;
-  background:linear-gradient(180deg,#FFFDF9,#FBF6EE);
-  border:1px solid rgba(184,137,104,.44);
-  box-shadow:0 10px 20px rgba(61,53,43,.07);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  transform:translateY(38%);
-  transition:transform .75s cubic-bezier(.22,.82,.2,1), opacity .45s ease;
+.env-card{
+  position:absolute;left:11%;right:11%;bottom:9%;height:67%;z-index:3;
+  background:linear-gradient(#fffefb,#faf5ed);border:1px solid rgba(184,135,105,.32);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  transform:translateY(50%);transition:transform .78s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 9px 18px rgba(64,54,45,.06)
 }
-.invite-slip .small{
-  font-size:8px;
-  letter-spacing:.28em;
-  text-transform:uppercase;
-  color:var(--rose);
-}
-.invite-slip .script{
-  font:400 clamp(42px,11vw,70px)/.85 var(--script);
-  color:var(--olive-dark);
-  margin:8px 0 5px;
-}
-.invite-slip .date{
-  font:500 15px var(--serif);
-  letter-spacing:.16em;
-  color:var(--bronze);
-}
-.invite-slip .leaf{
-  color:var(--sage);
-  font-size:16px;
-  margin-bottom:6px;
-}
-
-.env-left,.env-right,.env-bottom{
-  position:absolute;
-  bottom:0;
-  z-index:5;
-}
-.env-left,.env-right{
-  width:72%;
-  height:82%;
-  background:#F3E9DB;
-  border-top:1px solid rgba(184,137,104,.28);
-}
-.env-left{
-  left:-22%;
-  transform:rotate(33deg);
-  transform-origin:bottom left;
-}
-.env-right{
-  right:-22%;
-  transform:rotate(-33deg);
-  transform-origin:bottom right;
-}
-.env-bottom{
-  left:0; right:0;
-  height:52%;
-  background:linear-gradient(180deg,#F7EEE1,#F0E3D3);
-  clip-path:polygon(0 100%,100% 100%,50% 0);
-  border-bottom-left-radius:8px;
-  border-bottom-right-radius:8px;
-}
-
+.env-card .tiny{font-size:8px;letter-spacing:.26em;text-transform:uppercase;color:var(--rose)}
+.env-card .script{font:400 clamp(40px,10vw,64px)/.84 var(--script);color:var(--olive2);margin:7px 0}
+.env-card .date{font:500 14px var(--serif);letter-spacing:.15em;color:var(--bronze)}
+.env-left,.env-right,.env-bottom{position:absolute;bottom:0;z-index:5}
+.env-left,.env-right{width:72%;height:78%;background:#f4eadc;border-top:1px solid rgba(184,135,105,.20)}
+.env-left{left:-22%;transform:rotate(34deg);transform-origin:bottom left}
+.env-right{right:-22%;transform:rotate(-34deg);transform-origin:bottom right}
+.env-bottom{left:0;right:0;height:50%;background:linear-gradient(#f7eee2,#efe1d0);clip-path:polygon(0 100%,100% 100%,50% 0);border-radius:0 0 9px 9px}
 .env-flap{
-  position:absolute;
-  left:0; right:0; top:0;
-  height:64%;
-  z-index:7;
-  background:linear-gradient(180deg,#EADCCB,#E2D1BD);
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  border-top-left-radius:8px;
-  border-top-right-radius:8px;
-  transform-origin:top center;
-  transition:transform .78s cubic-bezier(.25,.8,.2,1);
-  backface-visibility:hidden;
+  position:absolute;left:0;right:0;top:0;height:61%;z-index:7;
+  background:linear-gradient(#eadcca,#e2d1bd);clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top center;transition:transform .72s cubic-bezier(.2,.78,.2,1);backface-visibility:hidden
 }
 .env-seal{
-  position:absolute;
-  left:50%;
-  top:46%;
-  transform:translate(-50%,-50%);
-  width:68px;height:68px;border-radius:50%;
-  z-index:8;
-  display:grid;place-items:center;
-  background:radial-gradient(circle at 35% 30%, #D6AE96, #B57D62 72%, #A06851);
-  box-shadow:0 5px 15px rgba(85,58,44,.22), inset 0 0 0 3px rgba(255,255,255,.10);
-  color:#FFF8F2;
-  font-size:23px;
-  transition:opacity .28s ease, transform .28s ease;
+  position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:8;
+  width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#fff9f3;font-size:21px;
+  background:radial-gradient(circle at 35% 28%,#d5ad94,#b57d63 72%,#9d6650);
+  box-shadow:0 5px 14px rgba(83,58,44,.20),inset 0 0 0 3px rgba(255,255,255,.08);
+  transition:.25s ease
 }
+.envelope.open1 .env-flap{transform:rotateX(180deg)}
+.envelope.open1 .env-seal{opacity:0;transform:translate(-50%,-50%) scale(.9)}
+.envelope.open2 .env-card{transform:translateY(-8%)}
+.cover-note{font:italic 18px/1.5 var(--serif);color:var(--bronze);margin-top:22px}
+.btn{
+  width:100%;border:none;border-radius:999px;padding:14px 18px;background:var(--olive);color:white;
+  font:500 9px var(--sans);letter-spacing:.18em;text-transform:uppercase;box-shadow:0 9px 23px rgba(89,105,77,.16)
+}
+.open-btn{max-width:250px;margin:17px auto 0}
 
-.envelope.open-1 .env-flap{transform:rotateX(180deg)}
-.envelope.open-1 .env-seal{opacity:0; transform:translate(-50%,-50%) scale(.92)}
-.envelope.open-2 .invite-slip{transform:translateY(-10%)}
-.envelope.open-2 .env-back{box-shadow:inset 0 10px 24px rgba(90,75,60,.04)}
+/* 2 — FAMILY GATE */
+.gate-paper{border-radius:28px;padding:75px 28px 36px;border:1px solid rgba(184,135,105,.30);overflow:hidden}
+.gate-head{text-align:center;position:relative;z-index:4;margin-bottom:28px}
+.gate-head .mini{font-size:8px;letter-spacing:.32em;text-transform:uppercase;color:var(--rose)}
+.gate-head h1{font:400 clamp(58px,14vw,88px)/.84 var(--script);color:var(--olive2);margin:10px 0 5px}
+.gate-head p{max-width:420px;margin:0 auto;font:400 17px/1.5 var(--serif);color:var(--bronze)}
+.field{position:relative;z-index:4;margin-bottom:16px}
+.field label{display:block;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--bronze);margin-bottom:7px}
+input,textarea{
+  width:100%;padding:13px 14px;border:1px solid rgba(184,135,105,.28);border-radius:13px;background:#fffdf9;color:var(--ink);font:400 13px var(--sans);outline:none
+}
+input:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 3px rgba(152,165,139,.10)}
+.error{display:none;margin-top:10px;padding:10px 12px;border-radius:11px;background:#faf0eb;border:1px solid rgba(167,108,87,.20);color:#8c5745;text-align:center;font:400 13px var(--serif)}
+.error.show{display:block}
 
-/* ===== LAYER 2 : FAIRE-PART ===== */
-.invitation-paper{
-  border-radius:270px 270px 28px 28px;
-  padding:18px;
-}
-.invitation-paper::before{
-  content:"";
-  position:absolute; inset:9px;
-  border:1px solid rgba(184,137,104,.64);
-  border-radius:260px 260px 23px 23px;
-  pointer-events:none;
-}
-.invitation-paper::after{
-  content:"";
-  position:absolute; inset:19px;
-  border:1px solid rgba(203,169,126,.22);
-  border-radius:250px 250px 18px 18px;
-  pointer-events:none;
-}
-.invite-inner{
-  min-height:790px;
-  padding:64px 30px 46px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-  z-index:4;
-}
-.inv-top-ornament{
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  color:var(--rose); margin-bottom:16px;
-}
-.inv-top-ornament::before,.inv-top-ornament::after{
-  content:""; width:56px; height:1px; background:linear-gradient(90deg,transparent,var(--rose));
-}
-.inv-top-ornament::after{transform:scaleX(-1)}
-.eyebrow{
-  font-size:8px;
-  letter-spacing:.37em;
-  text-transform:uppercase;
-  color:var(--bronze);
-}
-.guest-pill{
-  margin:10px 0 12px;
-  padding:7px 15px;
-  border-radius:999px;
-  border:1px solid rgba(143,159,129,.40);
-  background:rgba(221,229,216,.44);
-  color:var(--olive);
-  font:italic 16px var(--serif);
-}
-.hero-names{
-  font:400 clamp(62px,15vw,96px)/.78 var(--script);
-  color:var(--olive-dark);
-  margin:8px 0 10px;
-}
-.hero-names .and{
-  display:block;
-  font:400 34px/1 var(--serif);
-  color:var(--rose);
-  margin:14px 0 8px;
-}
-.inv-copy{
-  max-width:420px;
-  font:400 20px/1.55 var(--serif);
-  color:#665C50;
-  margin:10px auto 22px;
-}
-.date-grid{
-  width:min(100%, 410px);
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  gap:14px;
-  align-items:center;
-}
-.date-side{
-  padding:8px 2px;
-  border-top:1px solid rgba(184,137,104,.48);
-  border-bottom:1px solid rgba(184,137,104,.48);
-  font-size:8px;
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--bronze);
-}
-.date-num{
-  font:500 63px/.82 var(--serif);
-  color:var(--olive);
-}
-.location-big{
-  margin-top:20px;
-  font:500 27px/1 var(--serif);
-  letter-spacing:.11em;
-  text-transform:uppercase;
-}
-.location-sub{
-  font:italic 15px var(--serif);
-  color:var(--bronze);
-  margin-top:6px;
-}
-.discover-btn{
-  margin-top:28px;
-  border:none;
-  border-radius:999px;
-  padding:14px 23px;
-  background:var(--olive);
-  color:#fff;
-  font:500 9px var(--sans);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  box-shadow:0 9px 24px rgba(86,99,73,.18);
-}
-
-/* nicer detailed flowers on card */
-.card-flower{
-  position:absolute;
-  z-index:3;
-  pointer-events:none;
-}
-.card-flower.one{width:160px; top:110px; left:10px; transform:rotate(-16deg)}
-.card-flower.two{width:148px; right:8px; bottom:86px; transform:rotate(157deg)}
-
-/* ===== LAYER 3 : PROGRAMME ===== */
-.program-paper{
-  border-radius:28px;
-  padding:24px 21px 28px;
-  border:1px solid rgba(184,137,104,.38);
-}
-.program-paper::before{
-  content:"";
-  position:absolute; inset:10px;
-  border:1px solid rgba(203,169,126,.18);
-  border-radius:21px;
-  pointer-events:none;
-}
-.program-head{
-  text-align:center;
-  padding:20px 20px 23px;
-  position:relative;
-  z-index:4;
-}
-.program-head .mini{
-  font-size:8px;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:var(--rose);
-}
-.program-head h2{
-  font:500 42px/1.03 var(--serif);
-  color:var(--olive-dark);
-  margin-top:7px;
-}
-.program-head p{
-  font:400 17px/1.5 var(--serif);
-  color:var(--bronze);
-  max-width:440px;
-  margin:10px auto 0;
-}
-.band{
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  margin:4px 0 20px; color:var(--rose);
-}
-.band::before,.band::after{
-  content:""; width:70px; height:1px; background:linear-gradient(90deg,transparent,var(--rose));
-}
-.band::after{transform:scaleX(-1)}
-.events{
-  display:grid;
-  gap:12px;
-  position:relative;
-  z-index:4;
-}
+/* 3 — INVITATION REVEAL */
+.invite-paper{border-radius:255px 255px 28px 28px;padding:18px;overflow:hidden}
+.invite-paper::before{content:"";position:absolute;inset:9px;border:1px solid rgba(184,135,105,.58);border-radius:245px 245px 23px 23px;pointer-events:none;z-index:3}
+.invite-paper::after{content:"";position:absolute;inset:19px;border:1px solid rgba(203,167,126,.20);border-radius:235px 235px 18px 18px;pointer-events:none;z-index:3}
+.invite-inner{min-height:785px;padding:68px 29px 45px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:5}
+.invite-mini{font-size:8px;letter-spacing:.34em;text-transform:uppercase;color:var(--bronze)}
+.family-pill{margin:11px 0 12px;padding:7px 15px;border-radius:999px;border:1px solid rgba(152,165,139,.38);background:rgba(225,231,220,.50);font:italic 16px var(--serif);color:var(--olive)}
+.names{font:400 clamp(62px,15vw,94px)/.78 var(--script);color:var(--olive2);margin:7px 0 10px}
+.names .and{display:block;font:400 33px/1 var(--serif);color:var(--rose);margin:14px 0 8px}
+.inv-copy{max-width:415px;font:400 20px/1.53 var(--serif);color:#665c51;margin:12px 0 20px}
+.date-line{font:500 22px var(--serif);letter-spacing:.13em;text-transform:uppercase;color:var(--olive);margin-bottom:20px}
+.reveal-block{width:100%;max-width:440px;display:grid;gap:11px;margin-top:4px}
 .event-card{
-  display:grid;
-  grid-template-columns:68px 1fr;
-  gap:14px;
-  align-items:center;
-  padding:17px;
-  background:#FFFDF9;
-  border:1px solid rgba(184,137,104,.24);
-  border-radius:18px;
-  box-shadow:var(--shadow-soft);
+  text-align:left;display:grid;grid-template-columns:62px 1fr;gap:13px;align-items:center;padding:15px 16px;
+  border:1px solid rgba(184,135,105,.23);border-radius:17px;background:rgba(255,253,249,.92);box-shadow:0 10px 24px rgba(64,54,45,.05)
 }
 .event-card[hidden]{display:none!important}
-.event-icon{
-  width:56px;height:56px;border-radius:50%;
-  display:grid;place-items:center;
-  background:var(--sage-soft);
-  color:var(--olive);
-  font-size:24px;
+.event-icon{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;background:var(--sage2);color:var(--olive);font-size:22px}
+.event-kicker{font-size:7px;letter-spacing:.17em;text-transform:uppercase;color:var(--rose)}
+.event-title{font:500 20px var(--serif);margin-top:2px}
+.event-meta{font-size:10px;line-height:1.55;color:var(--bronze);margin-top:3px}
+.photo-slot{
+  width:100%;height:150px;border-radius:14px;overflow:hidden;border:1px solid rgba(184,135,105,.18);
+  background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 14px var(--serif);margin-top:8px
 }
-.event-kicker{
-  font-size:8px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--rose);
-}
-.event-title{
-  font:500 22px var(--serif);
-  margin-top:2px;
-}
-.event-meta{
-  margin-top:4px;
-  font-size:11px;
-  line-height:1.6;
-  color:var(--bronze);
-}
-.placeholder{
-  font-style:italic;
-  color:var(--muted);
-}
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
-  margin:22px 0 18px;
-}
-.cd{
-  text-align:center;
-  padding:14px 4px 12px;
-  background:#FFFDF9;
-  border:1px solid rgba(184,137,104,.22);
-  border-radius:14px;
-}
-.cd strong{
-  display:block;
-  font:500 30px/1 var(--serif);
-  color:var(--olive-dark);
-}
-.cd span{
-  display:block;
-  margin-top:5px;
-  font-size:7px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-  color:var(--bronze);
-}
-.next-btn{
-  width:100%;
-  border:none;
-  border-radius:999px;
-  padding:14px 18px;
-  background:var(--olive);
-  color:#fff;
-  font:500 9px var(--sans);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
+.photo-slot img{width:100%;height:100%;object-fit:cover;display:block}
+.to-rsvp{margin-top:20px}
 
-/* ===== LAYER 4 : RSVP ===== */
-.rsvp-paper{
-  border-radius:28px;
-  padding:28px 22px;
-  border:1px solid rgba(184,137,104,.38);
-}
-.rsvp-title{
-  text-align:center;
-  margin-bottom:23px;
-}
-.rsvp-title .mini{
-  font-size:8px;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:var(--rose);
-}
-.rsvp-title h2{
-  font:500 40px var(--serif);
-  color:var(--olive-dark);
-  margin-top:5px;
-}
-.rsvp-title p{
-  font:400 16px/1.5 var(--serif);
-  color:var(--bronze);
-  max-width:430px;
-  margin:8px auto 0;
-}
-
-.progress{
-  display:flex;
-  justify-content:center;
-  gap:9px;
-  margin-bottom:23px;
-}
-.progress span{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--cream);
-}
-.progress span.on{
-  background:var(--olive);
-  box-shadow:0 0 0 4px rgba(143,159,129,.12);
-}
-
-.steps{position:relative;min-height:380px}
-.step{display:none;animation:rise .4s ease both}
-.step.active{display:block}
-
-.field{margin-bottom:18px}
-.field label{
-  display:block;
-  margin-bottom:7px;
-  font-size:8px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
-  color:var(--bronze);
-}
-input,textarea{
-  width:100%;
-  padding:13px 14px;
-  border:1px solid rgba(184,137,104,.28);
-  border-radius:13px;
-  background:#FFFDF9;
-  color:var(--ink);
-  font:400 13px var(--sans);
-  outline:none;
-}
-input:focus,textarea:focus{
-  border-color:var(--sage);
-  box-shadow:0 0 0 3px rgba(143,159,129,.10);
-}
-textarea{
-  min-height:110px;
-  resize:vertical;
-}
-
-.main-btn{
-  width:100%;
-  border:none;
-  border-radius:999px;
-  padding:14px 17px;
-  background:var(--olive);
-  color:#fff;
-  font:500 9px var(--sans);
-  letter-spacing:.18em;
-  text-transform:uppercase;
-}
-.main-btn:disabled{
-  opacity:.35;
-  cursor:default;
-}
-.back-btn{
-  width:100%;
-  border:none;
-  background:transparent;
-  color:var(--bronze);
-  font-size:9px;
-  padding:11px 0 0;
-}
-.error-box{
-  display:none;
-  margin-top:10px;
-  padding:10px 12px;
-  border-radius:12px;
-  background:#FAF0EB;
-  border:1px solid rgba(170,110,88,.22);
-  color:#8D5644;
-  text-align:center;
-  font:400 13px var(--serif);
-}
-.error-box.show{display:block}
-
-.family-found{
-  text-align:center;
-  margin-bottom:17px;
-  padding:13px;
-  border-radius:14px;
-  background:#EEF2EA;
-  border:1px solid rgba(86,99,73,.22);
-}
-.family-found small{
-  display:block;
-  font-size:7px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--rose);
-}
-.family-found strong{
-  display:block;
-  margin-top:2px;
-  font:500 22px var(--serif);
-  color:var(--olive-dark);
-}
-
-.people{display:grid;gap:11px}
-.person{
-  padding:15px;
-  border:1px solid rgba(184,137,104,.25);
-  border-radius:17px;
-  background:#FFFDF9;
-}
-.person-head{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:10px;
-}
-.avatar{
-  width:42px;height:42px;border-radius:50%;
-  display:grid;place-items:center;
-  background:var(--sage-soft);
-  color:var(--olive-dark);
-  font:500 20px var(--serif);
-}
-.person-title{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.pname{
-  font:500 22px var(--serif);
-}
-.role-chip{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  padding:4px 8px;
-  border-radius:999px;
-  background:#F3F0EA;
-  border:1px solid rgba(184,137,104,.18);
-  color:var(--bronze);
-  font-size:8px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.role-chip.child{
-  background:#EEF2EA;
-  color:var(--olive);
-  border-color:rgba(86,99,73,.18);
-}
-
-.person-event{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  align-items:center;
-  padding-top:10px;
-  margin-top:8px;
-  border-top:1px solid rgba(184,137,104,.13);
-}
-.person-label{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font:500 15px var(--serif);
-}
-.person-label i{color:var(--rose)}
-.choices{
-  display:flex;
-  gap:6px;
-}
-.choices button{
-  min-width:43px;
-  border:1px solid rgba(184,137,104,.25);
-  border-radius:999px;
-  background:#fff;
-  color:var(--bronze);
-  padding:7px;
-  font:500 8px var(--sans);
-  text-transform:uppercase;
-}
-.choices .yes.on{
-  background:#EEF2EA;
-  border-color:var(--olive);
-  color:var(--olive-dark);
-}
-.choices .no.on{
-  background:#FAF0EB;
-  border-color:var(--danger);
-  color:#8D5644;
-}
-.meal-extra{
-  display:none;
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px dashed rgba(184,137,104,.24);
-}
+/* 4 — RSVP */
+.rsvp-paper{border-radius:28px;padding:30px 22px;border:1px solid rgba(184,135,105,.30);overflow:hidden}
+.rsvp-head{text-align:center;position:relative;z-index:4;margin-bottom:22px}
+.rsvp-head .mini{font-size:8px;letter-spacing:.30em;text-transform:uppercase;color:var(--rose)}
+.rsvp-head h2{font:500 39px var(--serif);color:var(--olive2);margin-top:5px}
+.rsvp-head p{font:400 16px/1.5 var(--serif);color:var(--bronze);max-width:430px;margin:7px auto 0}
+.people{display:grid;gap:11px;position:relative;z-index:4}
+.person{padding:15px;border:1px solid rgba(184,135,105,.23);border-radius:17px;background:#fffdf9}
+.person-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.avatar{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--sage2);font:500 19px var(--serif);color:var(--olive2)}
+.person-title{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pname{font:500 21px var(--serif)}
+.role{display:inline-flex;align-items:center;gap:4px;padding:3px 7px;border-radius:999px;background:#f4f0e9;border:1px solid rgba(184,135,105,.15);color:var(--bronze);font-size:7px;letter-spacing:.08em;text-transform:uppercase}
+.role.child{background:#eef3ea;color:var(--olive);border-color:rgba(89,105,77,.15)}
+.person-event{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding-top:9px;margin-top:7px;border-top:1px solid rgba(184,135,105,.12)}
+.plabel{display:flex;align-items:center;gap:6px;font:500 14px var(--serif)}
+.plabel i{color:var(--rose)}
+.choices{display:flex;gap:5px}
+.choices button{min-width:42px;border:1px solid rgba(184,135,105,.22);border-radius:999px;background:white;padding:6px;color:var(--bronze);font:500 7px var(--sans);text-transform:uppercase}
+.choices .yes.on{background:#eef3ea;border-color:var(--olive);color:var(--olive2)}
+.choices .no.on{background:#faf0eb;border-color:var(--red);color:#8c5745}
+.meal-extra{display:none;margin-top:9px;padding-top:9px;border-top:1px dashed rgba(184,135,105,.22)}
 .meal-extra.show{display:block}
-.meal-extra label{
-  display:block;
-  margin-bottom:6px;
-  font-size:7px;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--bronze);
-}
+.meal-extra label{display:block;margin-bottom:5px;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--bronze)}
+textarea{min-height:100px;resize:vertical}
+.confirm{margin-top:16px}.confirm:disabled{opacity:.35;cursor:default}
+.success{text-align:center;padding:38px 8px;position:relative;z-index:4}
+.success i{font-size:42px;color:var(--olive)}
+.success h3{font:500 30px var(--serif);color:var(--olive2);margin-top:8px}
+.success p{font:400 16px/1.55 var(--serif);color:var(--bronze);max-width:420px;margin:8px auto}
 
-.success{
-  text-align:center;
-  padding:35px 5px;
-}
-.success i{
-  font-size:42px;
-  color:var(--olive);
-}
-.success h3{
-  margin-top:7px;
-  font:500 31px var(--serif);
-  color:var(--olive-dark);
-}
-.success p{
-  max-width:410px;
-  margin:8px auto 0;
-  font:400 16px/1.56 var(--serif);
-  color:var(--bronze);
-}
-
-@media (max-width: 460px){
-  .layer{padding:14px 10px}
-  .invitation-paper{padding:12px}
-  .invite-inner{min-height:735px;padding:56px 20px 42px}
-  .hero-names{font-size:64px}
-  .date-num{font-size:54px}
-  .card-flower.one{width:128px;left:0}
-  .card-flower.two{width:118px;right:-4px}
-  .floral.tl{width:250px;left:-98px}
-  .floral.br{width:275px;right:-104px}
-  .program-paper,.rsvp-paper{padding-left:15px;padding-right:15px}
+@media(max-width:460px){
+  .layer{padding:13px 10px}
+  .gate-paper,.rsvp-paper{padding-left:16px;padding-right:16px}
+  .invite-paper{padding:12px}
+  .invite-inner{min-height:735px;padding:58px 20px 42px}
+  .names{font-size:64px}
+  .floral-img.tl,.floral-img.alt-tl{width:235px;left:-72px}
+  .floral-img.br,.floral-img.alt-br{width:245px;right:-78px}
 }
 </style>
 </head>
+
 <body>
 <main class="app">
 
-<!-- décor général -->
-<span class="spark sp1">✦</span><span class="spark sp2">✧</span><span class="spark sp3">✦</span>
-<span class="spark sp4">✧</span><span class="spark sp5">✦</span><span class="spark sp6">✧</span>
-<span class="dot dt1"></span><span class="dot dt2"></span><span class="dot dt3"></span>
-<span class="dot dt4"></span><span class="dot dt5"></span>
-
-<!-- floral corners -->
-<svg class="floral tl" viewBox="0 0 340 380" aria-hidden="true">
-  <path class="stem" d="M26 365 C76 312 102 235 145 165 C182 105 238 55 312 18"/>
-  <path class="stem-soft" d="M84 286 C115 257 132 233 155 199"/>
-  <path class="stem-soft" d="M170 150 C190 135 220 114 252 81"/>
-  <ellipse class="leaf-main" cx="74" cy="305" rx="18" ry="48" transform="rotate(-46 74 305)"/>
-  <ellipse class="leaf-sage" cx="110" cy="258" rx="17" ry="43" transform="rotate(-29 110 258)"/>
-  <ellipse class="leaf-main" cx="138" cy="205" rx="17" ry="43" transform="rotate(-14 138 205)"/>
-  <ellipse class="leaf-soft" cx="177" cy="156" rx="16" ry="41" transform="rotate(22 177 156)"/>
-  <ellipse class="leaf-main" cx="225" cy="105" rx="16" ry="40" transform="rotate(39 225 105)"/>
-  <ellipse class="leaf-sage" cx="278" cy="59" rx="15" ry="37" transform="rotate(51 278 59)"/>
-  <ellipse class="leaf-soft" cx="122" cy="228" rx="10" ry="28" transform="rotate(38 122 228)"/>
-  <ellipse class="leaf-soft" cx="206" cy="126" rx="10" ry="26" transform="rotate(-33 206 126)"/>
-  <circle class="berry" cx="96" cy="188" r="5"/><circle class="berry" cx="106" cy="180" r="4.3"/><circle class="berry" cx="117" cy="171" r="3.8"/>
-  <g transform="translate(28 192)">
-    <circle class="petal-outer" cx="30" cy="22" r="14"/><circle class="petal-outer" cx="46" cy="31" r="14"/>
-    <circle class="petal-outer" cx="44" cy="49" r="13"/><circle class="petal-outer" cx="27" cy="56" r="13"/>
-    <circle class="petal-outer" cx="13" cy="45" r="13"/><circle class="petal-outer" cx="15" cy="27" r="13"/>
-    <circle class="petal-mid" cx="30" cy="39" r="13"/><circle class="petal-inner" cx="30" cy="39" r="8"/>
-    <circle class="pollen" cx="30" cy="39" r="4"/>
-  </g>
-  <g transform="translate(146 68) scale(.76)">
-    <circle class="petal-outer" cx="30" cy="22" r="14"/><circle class="petal-outer" cx="46" cy="31" r="14"/>
-    <circle class="petal-outer" cx="44" cy="49" r="13"/><circle class="petal-outer" cx="27" cy="56" r="13"/>
-    <circle class="petal-outer" cx="13" cy="45" r="13"/><circle class="petal-outer" cx="15" cy="27" r="13"/>
-    <circle class="petal-mid" cx="30" cy="39" r="13"/><circle class="petal-inner" cx="30" cy="39" r="8"/>
-    <circle class="pollen" cx="30" cy="39" r="4"/>
-  </g>
-  <circle class="bud" cx="173" cy="178" r="9"/><circle class="bud" cx="188" cy="164" r="7"/>
-</svg>
-
-<svg class="floral tr" viewBox="0 0 340 380" aria-hidden="true">
-  <path class="stem" d="M26 365 C76 312 102 235 145 165 C182 105 238 55 312 18"/>
-  <ellipse class="leaf-main" cx="74" cy="305" rx="18" ry="48" transform="rotate(-46 74 305)"/>
-  <ellipse class="leaf-sage" cx="110" cy="258" rx="17" ry="43" transform="rotate(-29 110 258)"/>
-  <ellipse class="leaf-main" cx="138" cy="205" rx="17" ry="43" transform="rotate(-14 138 205)"/>
-  <ellipse class="leaf-soft" cx="177" cy="156" rx="16" ry="41" transform="rotate(22 177 156)"/>
-  <ellipse class="leaf-main" cx="225" cy="105" rx="16" ry="40" transform="rotate(39 225 105)"/>
-  <g transform="translate(38 215) scale(.70)">
-    <circle class="petal-outer" cx="30" cy="22" r="14"/><circle class="petal-outer" cx="46" cy="31" r="14"/>
-    <circle class="petal-outer" cx="44" cy="49" r="13"/><circle class="petal-outer" cx="27" cy="56" r="13"/>
-    <circle class="petal-outer" cx="13" cy="45" r="13"/><circle class="petal-outer" cx="15" cy="27" r="13"/>
-    <circle class="petal-mid" cx="30" cy="39" r="13"/><circle class="petal-inner" cx="30" cy="39" r="8"/>
-    <circle class="pollen" cx="30" cy="39" r="4"/>
-  </g>
-</svg>
-
-<svg class="floral bl" viewBox="0 0 340 380" aria-hidden="true">
-  <path class="stem" d="M26 365 C76 312 102 235 145 165 C182 105 238 55 312 18"/>
-  <ellipse class="leaf-main" cx="74" cy="305" rx="18" ry="48" transform="rotate(-46 74 305)"/>
-  <ellipse class="leaf-sage" cx="110" cy="258" rx="17" ry="43" transform="rotate(-29 110 258)"/>
-  <ellipse class="leaf-main" cx="138" cy="205" rx="17" ry="43" transform="rotate(-14 138 205)"/>
-  <ellipse class="leaf-soft" cx="177" cy="156" rx="16" ry="41" transform="rotate(22 177 156)"/>
-  <circle class="berry" cx="110" cy="180" r="4.2"/><circle class="berry" cx="121" cy="170" r="3.9"/>
-</svg>
-
-<svg class="floral br" viewBox="0 0 340 380" aria-hidden="true">
-  <path class="stem" d="M26 365 C76 312 102 235 145 165 C182 105 238 55 312 18"/>
-  <path class="stem-soft" d="M84 286 C115 257 132 233 155 199"/>
-  <ellipse class="leaf-main" cx="74" cy="305" rx="18" ry="48" transform="rotate(-46 74 305)"/>
-  <ellipse class="leaf-sage" cx="110" cy="258" rx="17" ry="43" transform="rotate(-29 110 258)"/>
-  <ellipse class="leaf-main" cx="138" cy="205" rx="17" ry="43" transform="rotate(-14 138 205)"/>
-  <ellipse class="leaf-soft" cx="177" cy="156" rx="16" ry="41" transform="rotate(22 177 156)"/>
-  <ellipse class="leaf-main" cx="225" cy="105" rx="16" ry="40" transform="rotate(39 225 105)"/>
-  <g transform="translate(146 68) scale(.85)">
-    <circle class="petal-outer" cx="30" cy="22" r="14"/><circle class="petal-outer" cx="46" cy="31" r="14"/>
-    <circle class="petal-outer" cx="44" cy="49" r="13"/><circle class="petal-outer" cx="27" cy="56" r="13"/>
-    <circle class="petal-outer" cx="13" cy="45" r="13"/><circle class="petal-outer" cx="15" cy="27" r="13"/>
-    <circle class="petal-mid" cx="30" cy="39" r="13"/><circle class="petal-inner" cx="30" cy="39" r="8"/>
-    <circle class="pollen" cx="30" cy="39" r="4"/>
-  </g>
-</svg>
-
-<!-- COUCHE 1 -->
+<!-- COUCHE 1 : ENVELOPPE -->
 <section class="layer active" id="layer1">
-  <div class="envelope-stage">
-    <div class="envelope-kicker">Une invitation vous est destinée</div>
+  <img class="floral-img tl" src="floral_tl.png" alt="">
+  <img class="floral-img br" src="floral_br.png" alt="">
 
-    <div class="envelope" id="envelope">
-      <div class="envelope-scene">
+  <div class="cover">
+    <div class="kicker">Une invitation vous est destinée</div>
+
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope">
         <div class="env-back"></div>
         <div class="env-liner"></div>
-
-        <div class="invite-slip">
-          <div class="leaf"><i class="ti ti-leaf"></i></div>
-          <div class="small">Mariage</div>
+        <div class="env-card">
+          <div class="tiny">Mariage</div>
           <div class="script">Timothée &amp; Christel</div>
           <div class="date">13 · 08 · 2027</div>
         </div>
-
         <div class="env-left"></div>
         <div class="env-right"></div>
         <div class="env-bottom"></div>
@@ -956,335 +222,279 @@ textarea{
       </div>
     </div>
 
-    <p class="envelope-note">Une journée pensée avec amour,<br>à ouvrir doucement.</p>
-    <button class="open-btn" id="openBtn" onclick="openEnvelope()">Ouvrir l’enveloppe</button>
+    <p class="cover-note">Une journée pensée avec amour,<br>à ouvrir doucement.</p>
+    <button class="btn open-btn" id="openBtn" onclick="openEnvelope()">Ouvrir l’enveloppe</button>
   </div>
-  <div class="layer-index">1 / 4 · L’enveloppe</div>
+  <div class="layer-count">1 / 4 · L’enveloppe</div>
 </section>
 
-<!-- COUCHE 2 -->
+<!-- COUCHE 2 : NOM DE FAMILLE -->
 <section class="layer" id="layer2">
-  <div class="paper invitation-paper">
+  <button class="back" onclick="showLayer(1)" aria-label="Retour"><i class="ti ti-arrow-left"></i></button>
+  <img class="floral-img alt-tl" src="floral_alt_tl.png" alt="">
+  <img class="floral-img alt-br" src="floral_alt_br.png" alt="">
 
-    <svg class="card-flower one" viewBox="0 0 170 210" aria-hidden="true">
-      <path class="stem" d="M24 202 C38 155 58 108 136 20"/>
-      <ellipse class="leaf-main" cx="49" cy="158" rx="14" ry="34" transform="rotate(-48 49 158)"/>
-      <ellipse class="leaf-sage" cx="73" cy="118" rx="13" ry="30" transform="rotate(39 73 118)"/>
-      <ellipse class="leaf-main" cx="101" cy="78" rx="12" ry="28" transform="rotate(47 101 78)"/>
-      <g transform="translate(18 38) scale(.90)">
-        <circle class="petal-outer" cx="30" cy="22" r="14"/><circle class="petal-outer" cx="46" cy="31" r="14"/>
-        <circle class="petal-outer" cx="44" cy="49" r="13"/><circle class="petal-outer" cx="27" cy="56" r="13"/>
-        <circle class="petal-outer" cx="13" cy="45" r="13"/><circle class="petal-outer" cx="15" cy="27" r="13"/>
-        <circle class="petal-mid" cx="30" cy="39" r="13"/><circle class="petal-inner" cx="30" cy="39" r="8"/>
-        <circle class="pollen" cx="30" cy="39" r="4"/>
-      </g>
-      <circle class="bud" cx="122" cy="112" r="8"/>
-    </svg>
+  <div class="paper gate-paper">
+    <div class="gate-head">
+      <div class="mini">Votre invitation</div>
+      <h1>Timothée &amp; Christel</h1>
+      <p>
+        Avant de découvrir les détails de la journée, saisissez simplement votre nom de famille.
+      </p>
+    </div>
 
-    <svg class="card-flower two" viewBox="0 0 170 210" aria-hidden="true">
-      <path class="stem" d="M24 202 C38 155 58 108 136 20"/>
-      <ellipse class="leaf-main" cx="49" cy="158" rx="14" ry="34" transform="rotate(-48 49 158)"/>
-      <ellipse class="leaf-sage" cx="73" cy="118" rx="13" ry="30" transform="rotate(39 73 118)"/>
-      <ellipse class="leaf-main" cx="101" cy="78" rx="12" ry="28" transform="rotate(47 101 78)"/>
-      <g transform="translate(18 38) scale(.90)">
-        <circle class="petal-outer" cx="30" cy="22" r="14"/><circle class="petal-outer" cx="46" cy="31" r="14"/>
-        <circle class="petal-outer" cx="44" cy="49" r="13"/><circle class="petal-outer" cx="27" cy="56" r="13"/>
-        <circle class="petal-outer" cx="13" cy="45" r="13"/><circle class="petal-outer" cx="15" cy="27" r="13"/>
-        <circle class="petal-mid" cx="30" cy="39" r="13"/><circle class="petal-inner" cx="30" cy="39" r="8"/>
-        <circle class="pollen" cx="30" cy="39" r="4"/>
-      </g>
-      <circle class="bud" cx="122" cy="112" r="8"/>
-    </svg>
+    <div class="field">
+      <label>Nom de famille</label>
+      <input id="familyName" type="text" placeholder="Ex : Muyinga" autocomplete="family-name"
+             oninput="clearError()" onkeydown="if(event.key==='Enter')findFamily()">
+    </div>
 
+    <button class="btn" onclick="findFamily()">Découvrir mon invitation</button>
+    <div class="error" id="familyError">
+      Nous ne trouvons pas d’invitation sous ce nom. Vérifiez l’orthographe ou contactez les mariés.
+    </div>
+  </div>
+  <div class="layer-count">2 / 4 · Identification</div>
+</section>
+
+<!-- COUCHE 3 : INVITATION PERSONNALISÉE -->
+<section class="layer" id="layer3">
+  <button class="back" onclick="showLayer(2)" aria-label="Retour"><i class="ti ti-arrow-left"></i></button>
+  <img class="floral-img tl" src="floral_tl.png" alt="">
+  <img class="floral-img br" src="floral_br.png" alt="">
+
+  <div class="paper invite-paper">
     <div class="invite-inner">
-      <div class="inv-top-ornament"><i class="ti ti-leaf"></i></div>
-      <div class="eyebrow">Nous nous marions</div>
-      <div class="guest-pill" id="guestPill" hidden></div>
+      <div class="invite-mini">Nous nous marions</div>
+      <div class="family-pill" id="familyPill">Famille Muyinga</div>
 
-      <div class="hero-names">Timothée<span class="and">&amp;</span>Christel</div>
+      <div class="names">Timothée<span class="and">&amp;</span>Christel</div>
 
-      <p class="inv-copy" id="heroCopy">
+      <p class="inv-copy" id="inviteCopy">
         Nous serions très heureux de partager avec vous cette journée d’amour,
         de famille et de célébration.
       </p>
 
-      <div class="date-grid">
-        <div class="date-side">Vendredi</div>
-        <div class="date-num">13</div>
-        <div class="date-side">Août 2027</div>
+      <div class="date-line">Vendredi 13 août 2027</div>
+
+      <div class="reveal-block">
+        <article class="event-card" id="mairieCard">
+          <div class="event-icon"><i class="ti ti-building-community"></i></div>
+          <div>
+            <div class="event-kicker">Cérémonie civile</div>
+            <div class="event-title">Mairie de Longjumeau</div>
+            <div class="event-meta">
+              156 Rue du Président François Mitterrand<br>
+              91160 Longjumeau<br>
+              <span class="placeholder">Horaire à compléter</span>
+            </div>
+          </div>
+          <div class="photo-slot" style="grid-column:1/-1">
+            <span id="mairiePlaceholder">Photo de la mairie à ajouter</span>
+            <img id="mairiePhoto" src="mairie-longjumeau.jpg" alt="Mairie de Longjumeau" onerror="this.style.display='none';document.getElementById('mairiePlaceholder').style.display='block'">
+          </div>
+        </article>
+
+        <article class="event-card" id="repasCard">
+          <div class="event-icon"><i class="ti ti-glass-full"></i></div>
+          <div>
+            <div class="event-kicker">Réception &amp; repas</div>
+            <div class="event-title">Lieu de réception</div>
+            <div class="event-meta">
+              59 rue de Préfontaine<br>
+              45490 Courtempierre
+            </div>
+          </div>
+          <div class="photo-slot" style="grid-column:1/-1">
+            <span id="edenPlaceholder">Photo du lieu de réception à ajouter</span>
+            <img id="edenPhoto" src="eden-eloah.jpg" alt="Lieu de réception" onerror="this.style.display='none';document.getElementById('edenPlaceholder').style.display='block'">
+          </div>
+        </article>
       </div>
 
-      <div class="location-big">Éden d’Eloah</div>
-      <div class="location-sub">Nature élégante · ivoire, sauge &amp; or rosé</div>
-
-      <button class="discover-btn" onclick="showLayer(3)">
-        Découvrir mon invitation <i class="ti ti-arrow-right"></i>
-      </button>
+      <button class="btn to-rsvp" onclick="showLayer(4)">Confirmer notre présence</button>
     </div>
   </div>
-  <div class="layer-index">2 / 4 · Le faire-part</div>
+  <div class="layer-count">3 / 4 · Invitation personnalisée</div>
 </section>
 
-<!-- COUCHE 3 -->
-<section class="layer" id="layer3">
-  <div class="paper program-paper">
-    <div class="program-head">
-      <div class="mini" id="inviteKind">Cérémonie &amp; réception</div>
-      <h2 id="programTitle">Votre invitation</h2>
-      <p id="programSummary">Découvrez les temps de la journée auxquels vous êtes conviés.</p>
-    </div>
-
-    <div class="band"><i class="ti ti-flower"></i></div>
-
-    <div class="events">
-      <article class="event-card" id="mairieCard">
-        <div class="event-icon"><i class="ti ti-building-community"></i></div>
-        <div>
-          <div class="event-kicker">Cérémonie civile</div>
-          <div class="event-title">Mairie de Longjumeau</div>
-          <div class="event-meta">
-            156 Rue du Président François Mitterrand<br>
-            91160 Longjumeau<br>
-            <span class="placeholder">Horaire à compléter</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="event-card" id="repasCard">
-        <div class="event-icon"><i class="ti ti-glass-full"></i></div>
-        <div>
-          <div class="event-kicker">Réception &amp; repas</div>
-          <div class="event-title">Éden d’Eloah</div>
-          <div class="event-meta">
-            À partir de 15h00<br>
-            59 rue de Préfontaine, 45490 Courtempierre
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <div class="countdown">
-      <div class="cd"><strong id="cd-j">--</strong><span>Jours</span></div>
-      <div class="cd"><strong id="cd-h">--</strong><span>Heures</span></div>
-      <div class="cd"><strong id="cd-m">--</strong><span>Minutes</span></div>
-      <div class="cd"><strong id="cd-s">--</strong><span>Secondes</span></div>
-    </div>
-
-    <button class="next-btn" onclick="showLayer(4)">
-      Confirmer ma présence <i class="ti ti-arrow-right"></i>
-    </button>
-  </div>
-  <div class="layer-index">3 / 4 · Votre programme</div>
-</section>
-
-<!-- COUCHE 4 -->
+<!-- COUCHE 4 : RSVP -->
 <section class="layer" id="layer4">
+  <button class="back" onclick="showLayer(3)" aria-label="Retour"><i class="ti ti-arrow-left"></i></button>
+  <img class="floral-img alt-tl" src="floral_alt_tl.png" alt="">
+  <img class="floral-img alt-br" src="floral_alt_br.png" alt="">
+
   <div class="paper rsvp-paper">
-    <div class="rsvp-title">
+    <div class="rsvp-head">
       <div class="mini">RSVP</div>
       <h2>Qui sera parmi nous ?</h2>
-      <p>Saisissez uniquement votre nom de famille pour retrouver les prénoms inscrits sur votre invitation.</p>
+      <p>Confirmez la présence de chaque personne inscrite sur votre invitation.</p>
     </div>
 
-    <div class="progress">
-      <span class="on" id="prog1"></span><span id="prog2"></span><span id="prog3"></span>
+    <div class="people" id="peopleList"></div>
+
+    <div class="field" style="margin-top:18px">
+      <label>Un petit mot pour les mariés <span style="text-transform:none;letter-spacing:0">(facultatif)</span></label>
+      <textarea id="message" placeholder="Vos vœux, un souvenir, quelques mots..."></textarea>
     </div>
 
-    <div class="steps">
-      <div class="step active" id="step1">
-        <div class="field">
-          <label>Nom de famille</label>
-          <input id="familyName" type="text" placeholder="Ex : Muyinga" autocomplete="family-name" oninput="clearError()" onkeydown="if(event.key==='Enter')findFamily()">
-        </div>
-        <button class="main-btn" onclick="findFamily()">Retrouver mon invitation</button>
-        <div class="error-box" id="familyError">Invitation introuvable. Vérifiez l’orthographe ou contactez les mariés.</div>
-      </div>
+    <button class="btn confirm" id="confirmBtn" onclick="confirmAnswers()" disabled>Confirmer nos réponses</button>
 
-      <div class="step" id="step2">
-        <div class="family-found">
-          <small>Invitation retrouvée</small>
-          <strong id="familyFound">Famille Muyinga</strong>
-        </div>
-
-        <div class="people" id="peopleList"></div>
-
-        <div class="field" style="margin-top:18px">
-          <label>Un petit mot pour les mariés <span style="text-transform:none;letter-spacing:0">(facultatif)</span></label>
-          <textarea id="message" placeholder="Vos vœux, un souvenir, quelques mots..."></textarea>
-        </div>
-
-        <button class="main-btn" id="confirmBtn" onclick="goStep(3)" disabled>Confirmer nos réponses</button>
-        <button class="back-btn" onclick="goStep(1)">Retour</button>
-      </div>
-
-      <div class="step" id="step3">
-        <div class="success">
-          <i class="ti ti-circle-check"></i>
-          <h3 id="successTitle">Merci !</h3>
-          <p id="successText"></p>
-        </div>
-      </div>
+    <div class="success" id="successBox" hidden>
+      <i class="ti ti-circle-check"></i>
+      <h3 id="successTitle">Merci !</h3>
+      <p id="successText"></p>
     </div>
   </div>
-  <div class="layer-index">4 / 4 · Votre réponse</div>
+  <div class="layer-count">4 / 4 · Votre réponse</div>
 </section>
 
 </main>
 
 <script>
 /*
-  VERSION V5
+  V6 — LOGIQUE FINALE TEST
+  ------------------------
+  1. On ne montre AUCUN lieu avant le nom de famille.
+  2. Le nom de famille détermine le type d'invitation.
+  3. Un seul site : aucune URL spéciale nécessaire.
+  4. Test Muyinga :
+       Victor — Adulte
+       Karine — Adulte
+       Samuel — Enfant
+       invitation : mairie + repas
 
-  - Animation enveloppe corrigée : le carton intérieur ne "dépasse" plus avant l'ouverture.
-  - Mairie ajoutée : 156 Rue du Président François Mitterrand, 91160 Longjumeau.
-  - Famille test Muyinga : Victor, Karine, Samuel.
-  - Rôle discret à côté de chaque prénom : Adulte / Enfant.
-  - Types d'invitation :
-      ?type=complet
-      ?type=mairie
-      ?type=repas
-    + personnalisation visuelle possible :
-      ?type=complet&famille=Muyinga
+  Photos à ajouter plus tard dans le même dossier :
+       mairie-longjumeau.jpg
+       eden-eloah.jpg
 */
-
-const params = new URLSearchParams(location.search);
-const typeRaw = (params.get('type') || 'complet').toLowerCase();
-const inviteType = ['complet','mairie','repas'].includes(typeRaw) ? typeRaw : 'complet';
-const familyFromUrl = params.get('famille');
 
 const HOUSEHOLDS = {
   "muyinga": {
-    display: "Muyinga",
-    people: [
-      { id:"victor", first:"Victor", role:"Adulte" },
-      { id:"karine", first:"Karine", role:"Adulte" },
-      { id:"samuel", first:"Samuel", role:"Enfant" }
+    display:"Muyinga",
+    type:"complet",
+    people:[
+      {id:"victor", first:"Victor", role:"Adulte"},
+      {id:"karine", first:"Karine", role:"Adulte"},
+      {id:"samuel", first:"Samuel", role:"Enfant"}
     ]
   }
+
+  /*
+  EXEMPLES POUR PLUS TARD :
+
+  "dupont": {
+    display:"Dupont",
+    type:"mairie",
+    people:[
+      {id:"paul", first:"Paul", role:"Adulte"},
+      {id:"anne", first:"Anne", role:"Adulte"}
+    ]
+  },
+
+  "martin": {
+    display:"Martin",
+    type:"repas",
+    people:[
+      {id:"luc", first:"Luc", role:"Adulte"}
+    ]
+  }
+  */
 };
 
 let currentHousehold = null;
 let answers = {};
 
-if (familyFromUrl) {
-  document.getElementById('guestPill').textContent = 'Pour la famille ' + familyFromUrl;
-  document.getElementById('guestPill').hidden = false;
-}
-
-/* ----- Enveloppe ----- */
-function openEnvelope() {
-  const env = document.getElementById('envelope');
-  const btn = document.getElementById('openBtn');
-  btn.disabled = true;
-
-  env.classList.add('open-1');
-  setTimeout(() => {
-    env.classList.add('open-2');
-  }, 420);
-
-  setTimeout(() => {
-    showLayer(2);
-  }, 1450);
-}
-
-/* ----- Navigation couches ----- */
-function showLayer(n) {
-  document.querySelectorAll('.layer').forEach(el => el.classList.remove('active'));
-  const target = document.getElementById('layer' + n);
-  target.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/* ----- Personnalisation programme ----- */
-function applyInviteType() {
-  const mairie = document.getElementById('mairieCard');
-  const repas = document.getElementById('repasCard');
-  const kind = document.getElementById('inviteKind');
-  const title = document.getElementById('programTitle');
-  const summary = document.getElementById('programSummary');
-  const copy = document.getElementById('heroCopy');
-
-  if (inviteType === 'mairie') {
-    repas.hidden = true;
-    kind.textContent = 'Cérémonie civile';
-    title.textContent = 'Nous vous attendons à la mairie';
-    summary.textContent = 'Cette invitation concerne la cérémonie civile de notre mariage.';
-    copy.textContent = 'Nous serions très heureux de vous compter parmi nous pour le moment où nous nous dirons officiellement oui.';
-  } else if (inviteType === 'repas') {
-    mairie.hidden = true;
-    kind.textContent = 'Réception & repas';
-    title.textContent = 'Célébrons ensemble à l’Éden d’Eloah';
-    summary.textContent = 'Cette invitation concerne la réception et le repas.';
-    copy.textContent = 'Nous serions très heureux de prolonger cette journée à vos côtés autour d’un repas et d’un moment de célébration.';
-  } else {
-    kind.textContent = 'Cérémonie & réception';
-    title.textContent = 'Une journée à célébrer ensemble';
-    summary.textContent = 'Votre invitation comprend la cérémonie civile ainsi que la réception à l’Éden d’Eloah.';
-    copy.textContent = 'Nous serions très heureux de partager avec vous cette journée d’amour, de famille et de célébration.';
-  }
-}
-applyInviteType();
-
-/* ----- Countdown ----- */
-function updateCountdown() {
-  const target = new Date('2027-08-13T15:00:00');
-  const diff = Math.max(0, target - new Date());
-  document.getElementById('cd-j').textContent = String(Math.floor(diff/86400000)).padStart(2,'0');
-  document.getElementById('cd-h').textContent = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
-  document.getElementById('cd-m').textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
-  document.getElementById('cd-s').textContent = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-/* ----- Recherche famille ----- */
-function normalizeValue(value) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
+function normalizeFamily(value){
+  return value.normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, " ");
+    .replace(/\s+/g," ");
 }
 
-function clearError() {
-  document.getElementById('familyError').classList.remove('show');
+function showLayer(n){
+  document.querySelectorAll(".layer").forEach(x=>x.classList.remove("active"));
+  document.getElementById("layer"+n).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function findFamily() {
-  const key = normalizeValue(document.getElementById('familyName').value);
-  const household = HOUSEHOLDS[key];
+function openEnvelope(){
+  const env=document.getElementById("envelope");
+  const btn=document.getElementById("openBtn");
+  btn.disabled=true;
 
-  if (!household) {
-    document.getElementById('familyError').classList.add('show');
+  // phase 1 : flap only
+  env.classList.add("open1");
+
+  // phase 2 : card rises only after flap is open
+  setTimeout(()=>env.classList.add("open2"),500);
+
+  // phase 3 : next page
+  setTimeout(()=>showLayer(2),1500);
+}
+
+function clearError(){
+  document.getElementById("familyError").classList.remove("show");
+}
+
+function findFamily(){
+  const key=normalizeFamily(document.getElementById("familyName").value);
+  const household=HOUSEHOLDS[key];
+
+  if(!household){
+    document.getElementById("familyError").classList.add("show");
     return;
   }
 
-  currentHousehold = household;
-  answers = {};
-  document.getElementById('familyError').classList.remove('show');
-  document.getElementById('familyFound').textContent = 'Famille ' + household.display;
+  currentHousehold=household;
+  answers={};
+
+  document.getElementById("familyPill").textContent="Famille "+household.display;
+
+  applyHouseholdInvitation();
   renderPeople();
-  goStep(2);
+  showLayer(3);
 }
 
-function renderPeople() {
-  const container = document.getElementById('peopleList');
-  container.innerHTML = '';
+function applyHouseholdInvitation(){
+  const mairie=document.getElementById("mairieCard");
+  const repas=document.getElementById("repasCard");
+  const copy=document.getElementById("inviteCopy");
 
-  currentHousehold.people.forEach(person => {
-    answers[person.id] = {
-      mairie: inviteType === 'repas' ? undefined : null,
-      repas: inviteType === 'mairie' ? undefined : null,
-      dietary: ''
+  mairie.hidden=false;
+  repas.hidden=false;
+
+  if(currentHousehold.type==="mairie"){
+    repas.hidden=true;
+    copy.textContent="Nous serions très heureux de vous compter parmi nous pour le moment où nous nous dirons officiellement oui.";
+  }else if(currentHousehold.type==="repas"){
+    mairie.hidden=true;
+    copy.textContent="Nous serions très heureux de vous retrouver pour prolonger cette journée autour d’un repas et d’un moment de célébration.";
+  }else{
+    copy.textContent="Nous serions très heureux de partager avec vous cette journée d’amour, de famille et de célébration.";
+  }
+}
+
+function renderPeople(){
+  const list=document.getElementById("peopleList");
+  list.innerHTML="";
+  document.getElementById("successBox").hidden=true;
+  document.getElementById("confirmBtn").hidden=false;
+
+  currentHousehold.people.forEach(person=>{
+    answers[person.id]={
+      mairie: currentHousehold.type==="repas" ? undefined : null,
+      repas: currentHousehold.type==="mairie" ? undefined : null,
+      dietary:""
     };
 
-    let eventsHTML = '';
+    let events="";
 
-    if (inviteType !== 'repas') {
-      eventsHTML += `
+    if(currentHousehold.type!=="repas"){
+      events+=`
         <div class="person-event">
-          <div class="person-label"><i class="ti ti-building-community"></i>Mairie</div>
+          <div class="plabel"><i class="ti ti-building-community"></i>Mairie</div>
           <div class="choices">
             <button class="yes" id="${person.id}-mairie-y" onclick="setAnswer('${person.id}','mairie',true)">Oui</button>
             <button class="no" id="${person.id}-mairie-n" onclick="setAnswer('${person.id}','mairie',false)">Non</button>
@@ -1292,10 +502,10 @@ function renderPeople() {
         </div>`;
     }
 
-    if (inviteType !== 'mairie') {
-      eventsHTML += `
+    if(currentHousehold.type!=="mairie"){
+      events+=`
         <div class="person-event">
-          <div class="person-label"><i class="ti ti-glass-full"></i>Réception & repas</div>
+          <div class="plabel"><i class="ti ti-glass-full"></i>Réception & repas</div>
           <div class="choices">
             <button class="yes" id="${person.id}-repas-y" onclick="setAnswer('${person.id}','repas',true)">Oui</button>
             <button class="no" id="${person.id}-repas-n" onclick="setAnswer('${person.id}','repas',false)">Non</button>
@@ -1307,80 +517,72 @@ function renderPeople() {
         </div>`;
     }
 
-    const roleChipClass = person.role.toLowerCase() === 'enfant' ? 'role-chip child' : 'role-chip';
-    const roleIcon = person.role.toLowerCase() === 'enfant' ? 'ti ti-mood-kid' : 'ti ti-user';
+    const roleClass=person.role==="Enfant" ? "role child" : "role";
+    const roleIcon=person.role==="Enfant" ? "ti ti-mood-kid" : "ti ti-user";
 
-    const card = document.createElement('article');
-    card.className = 'person';
-    card.innerHTML = `
+    const card=document.createElement("article");
+    card.className="person";
+    card.innerHTML=`
       <div class="person-head">
         <div class="avatar">${person.first.charAt(0)}</div>
-        <div>
-          <div class="person-title">
-            <div class="pname">${person.first}</div>
-            <span class="${roleChipClass}"><i class="${roleIcon}"></i>${person.role}</span>
-          </div>
+        <div class="person-title">
+          <div class="pname">${person.first}</div>
+          <span class="${roleClass}"><i class="${roleIcon}"></i>${person.role}</span>
         </div>
       </div>
-      ${eventsHTML}
+      ${events}
     `;
-    container.appendChild(card);
+    list.appendChild(card);
   });
 
   validateAnswers();
 }
 
-function setAnswer(id, eventName, value) {
-  answers[id][eventName] = value;
+function setAnswer(id,eventName,value){
+  answers[id][eventName]=value;
 
-  const yesBtn = document.getElementById(`${id}-${eventName}-y`);
-  const noBtn = document.getElementById(`${id}-${eventName}-n`);
-  if (yesBtn) yesBtn.classList.toggle('on', value === true);
-  if (noBtn) noBtn.classList.toggle('on', value === false);
+  const y=document.getElementById(`${id}-${eventName}-y`);
+  const n=document.getElementById(`${id}-${eventName}-n`);
+  if(y)y.classList.toggle("on",value===true);
+  if(n)n.classList.toggle("on",value===false);
 
-  if (eventName === 'repas') {
-    const extra = document.getElementById(`${id}-extra`);
-    if (extra) extra.classList.toggle('show', value === true);
+  if(eventName==="repas"){
+    const extra=document.getElementById(`${id}-extra`);
+    if(extra)extra.classList.toggle("show",value===true);
   }
 
   validateAnswers();
 }
 
-function validateAnswers() {
-  if (!currentHousehold) return;
+function validateAnswers(){
+  if(!currentHousehold)return;
 
-  const ok = currentHousehold.people.every(person => {
-    const a = answers[person.id];
-    if (inviteType === 'mairie') return a.mairie !== null;
-    if (inviteType === 'repas') return a.repas !== null;
-    return a.mairie !== null && a.repas !== null;
+  const complete=currentHousehold.people.every(person=>{
+    const a=answers[person.id];
+    if(currentHousehold.type==="mairie")return a.mairie!==null;
+    if(currentHousehold.type==="repas")return a.repas!==null;
+    return a.mairie!==null && a.repas!==null;
   });
 
-  document.getElementById('confirmBtn').disabled = !ok;
+  document.getElementById("confirmBtn").disabled=!complete;
 }
 
-function goStep(n) {
-  if (n === 3) {
-    const coming = currentHousehold.people.filter(person => {
-      const a = answers[person.id];
-      if (inviteType === 'mairie') return a.mairie === true;
-      if (inviteType === 'repas') return a.repas === true;
-      return a.mairie === true || a.repas === true;
-    }).map(person => person.first);
+function confirmAnswers(){
+  const attending=currentHousehold.people.filter(person=>{
+    const a=answers[person.id];
+    if(currentHousehold.type==="mairie")return a.mairie===true;
+    if(currentHousehold.type==="repas")return a.repas===true;
+    return a.mairie===true || a.repas===true;
+  }).map(person=>person.first);
 
-    document.getElementById('successTitle').textContent = 'Merci, famille ' + currentHousehold.display + ' !';
-    document.getElementById('successText').textContent =
-      coming.length
-        ? 'Votre réponse est bien prise en compte pour ' + coming.join(', ') + '. Timothée et Christel ont hâte de vous retrouver.'
-        : 'Votre réponse est bien prise en compte. Merci d’avoir pris le temps de nous répondre.';
-  }
+  document.getElementById("successTitle").textContent="Merci, famille "+currentHousehold.display+" !";
+  document.getElementById("successText").textContent=
+    attending.length
+      ? "Votre réponse est bien prise en compte pour "+attending.join(", ")+". Timothée et Christel ont hâte de vous retrouver."
+      : "Votre réponse est bien prise en compte. Merci d’avoir pris le temps de nous répondre.";
 
-  document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-  document.getElementById('step' + n).classList.add('active');
-
-  for (let i = 1; i <= 3; i++) {
-    document.getElementById('prog' + i).classList.toggle('on', i <= n);
-  }
+  document.getElementById("successBox").hidden=false;
+  document.getElementById("confirmBtn").hidden=true;
 }
 </script>
 </body>
