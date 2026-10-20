@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#f7f2e9">
-<title>Timothée & Christel — 13 août 2027</title>
+<title>Timothée & Christel — 6 août 2027</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <link rel="preload" as="image" href="mairie-longjumeau.jpg">
-<link rel="preload" as="image" href="eden-eloah.jpg">
 
 <style>
 
@@ -239,6 +238,7 @@ input:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 4px rgba(15
 .event-meta{font-size:10px;line-height:1.6;color:var(--bronze);margin-top:3px}
 .photo-slot{width:100%;height:180px;border-radius:16px;overflow:hidden;border:1px solid rgba(184,135,105,.14);background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 14px var(--serif);margin-top:10px}
 .photo-slot img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.96) contrast(1.02)}
+.photo-slot.mairie-photo{height:auto;aspect-ratio:3/4}
 .event-actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .mini-action{flex:1 1 150px;min-height:40px;border-radius:999px;border:1px solid rgba(89,105,77,.18);background:rgba(255,253,249,.92);color:var(--olive2);display:flex;align-items:center;justify-content:center;gap:7px;font:600 8px var(--sans);letter-spacing:.10em;text-transform:uppercase;padding:10px 12px;box-shadow:none}
 .mini-action:hover{background:#f3f6f0}
@@ -318,6 +318,7 @@ textarea{min-height:100px;resize:vertical}
 .recap-event-address{font-size:10px;line-height:1.58;color:var(--bronze);margin-top:4px}
 .recap-photo{height:154px;background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 13px var(--serif);overflow:hidden}
 .recap-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.96) contrast(1.02)}
+.recap-photo.mairie-photo{height:auto;aspect-ratio:3/4}
 .recap-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 12px 12px}
 .recap-empty{padding:13px;border-radius:14px;background:#f6f2eb;color:var(--bronze);font:italic 14px/1.45 var(--serif);text-align:center}
 .edit-btn{margin-top:18px;background:transparent;color:var(--olive2);border:1px solid rgba(89,105,77,.24);box-shadow:none}
@@ -372,7 +373,7 @@ textarea{min-height:100px;resize:vertical}
             <span class="script-line amp">&amp;</span>
             <span class="script-line">Christel</span>
           </div>
-          <div class="date">13 · 08 · 2027</div>
+          <div class="date">06 · 08 · 2027</div>
         </div>
         <div class="env-left"></div>
         <div class="env-right"></div>
@@ -437,7 +438,7 @@ textarea{min-height:100px;resize:vertical}
 
       <div class="invite-scope reveal-step" id="inviteScope">Votre invitation comprend la cérémonie civile ainsi que la réception et le repas.</div>
 
-      <div class="date-line reveal-step">Vendredi 13 août 2027</div>
+      <div class="date-line reveal-step">Vendredi 6 août 2027</div>
 
       <div class="reveal-block reveal-step">
         <article class="event-card" id="mairieCard">
@@ -445,9 +446,9 @@ textarea{min-height:100px;resize:vertical}
           <div>
             <div class="event-kicker">Cérémonie civile</div>
             <div class="event-title">Mairie de Longjumeau</div>
-            <div class="event-meta">156 Rue du Président François Mitterrand<br>91160 Longjumeau<br><span>Horaire à compléter</span></div>
+            <div class="event-meta">156 Rue du Président François Mitterrand<br>91160 Longjumeau<br><span>Horaire à confirmer auprès de la mairie</span></div>
           </div>
-          <div class="photo-slot" style="grid-column:1/-1">
+          <div class="photo-slot mairie-photo" style="grid-column:1/-1">
             <span id="mairiePlaceholder">Photo de la mairie à ajouter</span>
             <img id="mairiePhoto" src="mairie-longjumeau.jpg" alt="Mairie de Longjumeau" onload="document.getElementById('mairiePlaceholder').style.display='none'" onerror="this.style.display='none';document.getElementById('mairiePlaceholder').style.display='block'">
           </div>
@@ -461,15 +462,14 @@ textarea{min-height:100px;resize:vertical}
           <div class="event-icon"><i class="ti ti-glass-full"></i></div>
           <div>
             <div class="event-kicker">Réception &amp; repas</div>
-            <div class="event-title">Lieu de réception</div>
-            <div class="event-meta">59 rue de Préfontaine<br>45490 Courtempierre</div>
+            <div class="event-title">Le Patio — Mary d’Arvigny</div>
+            <div class="event-meta">Allée Édouard Branly<br>77550 Moissy-Cramayel<br>Seine-et-Marne<br><strong>De 15 h à 20 h 30</strong></div>
           </div>
           <div class="photo-slot" style="grid-column:1/-1">
-            <span id="edenPlaceholder">Photo du lieu de réception à ajouter</span>
-            <img id="edenPhoto" src="eden-eloah.jpg" alt="Lieu de réception" onload="document.getElementById('edenPlaceholder').style.display='none'" onerror="this.style.display='none';document.getElementById('edenPlaceholder').style.display='block'">
+            <span id="repasPlaceholder">Photo de la salle à ajouter ultérieurement</span>
           </div>
           <div class="event-actions">
-            <a class="mini-action" href="https://www.google.com/maps/search/?api=1&query=59%20rue%20de%20Pr%C3%A9fontaine%2045490%20Courtempierre" target="_blank" rel="noopener"><i class="ti ti-map-pin"></i>Itinéraire</a>
+            <a class="mini-action" href="https://goo.gl/maps/XV2d4qZRxKWGmhvb6" target="_blank" rel="noopener"><i class="ti ti-map-pin"></i>Itinéraire</a>
             <button class="mini-action" type="button" onclick="downloadCalendar('repas')"><i class="ti ti-calendar-plus"></i>Ajouter au calendrier</button>
           </div>
         </article>
@@ -538,14 +538,14 @@ textarea{min-height:100px;resize:vertical}
 */
 
 const WEDDING = {
-  dateISO:"2027-08-13",
-  dateDisplay:"Vendredi 13 août 2027",
+  dateISO:"2027-08-06",
+  dateDisplay:"Vendredi 6 août 2027",
   events:{
     mairie:{
       label:"Cérémonie civile",
       title:"Mairie de Longjumeau",
       address:"156 Rue du Président François Mitterrand, 91160 Longjumeau",
-      addressHtml:"156 Rue du Président François Mitterrand<br>91160 Longjumeau<br>Horaire à compléter",
+      addressHtml:"156 Rue du Président François Mitterrand<br>91160 Longjumeau<br>Horaire à confirmer auprès de la mairie",
       image:"mairie-longjumeau.jpg",
       imageAlt:"Mairie de Longjumeau",
       mapUrl:"https://www.google.com/maps/search/?api=1&query=156%20Rue%20du%20Pr%C3%A9sident%20Fran%C3%A7ois%20Mitterrand%2091160%20Longjumeau",
@@ -553,13 +553,15 @@ const WEDDING = {
     },
     repas:{
       label:"Réception & repas",
-      title:"Lieu de réception",
-      address:"59 rue de Préfontaine, 45490 Courtempierre",
-      addressHtml:"59 rue de Préfontaine<br>45490 Courtempierre",
-      image:"eden-eloah.jpg",
-      imageAlt:"Lieu de réception",
-      mapUrl:"https://www.google.com/maps/search/?api=1&query=59%20rue%20de%20Pr%C3%A9fontaine%2045490%20Courtempierre",
-      calendarTitle:"Mariage de Timothée & Christel — Réception et repas"
+      title:"Le Patio — Mary d’Arvigny",
+      address:"Allée Édouard Branly, 77550 Moissy-Cramayel, Seine-et-Marne",
+      addressHtml:"Allée Édouard Branly<br>77550 Moissy-Cramayel<br>Seine-et-Marne<br>De 15 h à 20 h 30",
+      image:"",
+      imageAlt:"Le Patio — Mary d’Arvigny",
+      mapUrl:"https://goo.gl/maps/XV2d4qZRxKWGmhvb6",
+      calendarTitle:"Mariage de Timothée & Christel — Réception et repas",
+      startTime:"15:00",
+      endTime:"20:30"
     }
   }
 };
@@ -934,9 +936,10 @@ function recapEventHtml(kind){
         <div class="recap-event-title">${escapeHtml(event.title)}</div>
         <div class="recap-event-address">${event.addressHtml}</div>
       </div>
-      <div class="recap-photo">
-        <span>Photo du lieu à ajouter</span>
-        <img src="${escapeHtml(event.image)}" alt="${escapeHtml(event.imageAlt)}" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'">
+      <div class="recap-photo${kind === 'mairie' ? ' mairie-photo' : ''}">
+        ${event.image
+          ? `<span>Photo du lieu à ajouter</span><img src="${escapeHtml(event.image)}" alt="${escapeHtml(event.imageAlt)}" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'">`
+          : `<span>Photo de la salle à ajouter ultérieurement</span>`}
       </div>
       <div class="recap-actions">
         <a class="mini-action" href="${event.mapUrl}" target="_blank" rel="noopener"><i class="ti ti-map-pin"></i>Itinéraire</a>
@@ -1014,8 +1017,17 @@ function downloadCalendar(kind){
   const date=WEDDING.dateISO.replaceAll("-","");
   const endDate=nextDateYYYYMMDD(WEDDING.dateISO);
   const description=kind==="mairie"
-    ? "Cérémonie civile du mariage de Timothée et Christel. Horaire à compléter."
-    : "Réception et repas du mariage de Timothée et Christel.";
+    ? "Cérémonie civile du mariage de Timothée et Christel. Horaire à confirmer auprès de la mairie."
+    : "Réception et repas du mariage de Timothée et Christel, de 15 h à 20 h 30.";
+
+  // La réception est un événement horaire, à l'heure de Paris (UTC+2 en août).
+  // Tant que l'horaire de la mairie n'est pas connu, on laisse cet événement sur la journée.
+  const startLine=kind==="repas"
+    ? `DTSTART:${date}T130000Z`
+    : `DTSTART;VALUE=DATE:${date}`;
+  const endLine=kind==="repas"
+    ? `DTEND:${date}T183000Z`
+    : `DTEND;VALUE=DATE:${endDate}`;
 
   const ics=[
     "BEGIN:VCALENDAR",
@@ -1024,8 +1036,8 @@ function downloadCalendar(kind){
     "CALSCALE:GREGORIAN",
     "BEGIN:VEVENT",
     `UID:${kind}-${date}@timothee-christel`,
-    `DTSTART;VALUE=DATE:${date}`,
-    `DTEND;VALUE=DATE:${endDate}`,
+    startLine,
+    endLine,
     `SUMMARY:${icsEscape(event.calendarTitle)}`,
     `LOCATION:${icsEscape(event.address)}`,
     `DESCRIPTION:${icsEscape(description)}`,
