@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <link rel="preload" as="image" href="mairie-longjumeau.jpg">
+<link rel="preload" as="image" href="patio-devanture.jpg">
 
 <style>
 
@@ -239,6 +240,8 @@ input:focus,textarea:focus{border-color:var(--sage);box-shadow:0 0 0 4px rgba(15
 .photo-slot{width:100%;height:180px;border-radius:16px;overflow:hidden;border:1px solid rgba(184,135,105,.14);background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 14px var(--serif);margin-top:10px}
 .photo-slot img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.96) contrast(1.02)}
 .photo-slot.mairie-photo{height:auto;aspect-ratio:3/4}
+.photo-slot.repas-photo{height:auto;aspect-ratio:3/4}
+.photo-slot.repas-photo img{object-position:center 50%}
 .event-actions{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .mini-action{flex:1 1 150px;min-height:40px;border-radius:999px;border:1px solid rgba(89,105,77,.18);background:rgba(255,253,249,.92);color:var(--olive2);display:flex;align-items:center;justify-content:center;gap:7px;font:600 8px var(--sans);letter-spacing:.10em;text-transform:uppercase;padding:10px 12px;box-shadow:none}
 .mini-action:hover{background:#f3f6f0}
@@ -319,6 +322,8 @@ textarea{min-height:100px;resize:vertical}
 .recap-photo{height:154px;background:linear-gradient(135deg,#eee7db,#e1e7dc);display:grid;place-items:center;color:var(--bronze);font:italic 13px var(--serif);overflow:hidden}
 .recap-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.96) contrast(1.02)}
 .recap-photo.mairie-photo{height:auto;aspect-ratio:3/4}
+.recap-photo.repas-photo{height:auto;aspect-ratio:4/5}
+.recap-photo.repas-photo img{object-position:center 50%}
 .recap-actions{display:flex;gap:8px;flex-wrap:wrap;padding:0 12px 12px}
 .recap-empty{padding:13px;border-radius:14px;background:#f6f2eb;color:var(--bronze);font:italic 14px/1.45 var(--serif);text-align:center}
 .edit-btn{margin-top:18px;background:transparent;color:var(--olive2);border:1px solid rgba(89,105,77,.24);box-shadow:none}
@@ -465,8 +470,9 @@ textarea{min-height:100px;resize:vertical}
             <div class="event-title">Le Patio — Mary d’Arvigny</div>
             <div class="event-meta">Allée Édouard Branly<br>77550 Moissy-Cramayel<br>Seine-et-Marne<br><strong>De 15 h à 20 h 30</strong></div>
           </div>
-          <div class="photo-slot" style="grid-column:1/-1">
-            <span id="repasPlaceholder">Photo de la salle à ajouter ultérieurement</span>
+          <div class="photo-slot repas-photo" style="grid-column:1/-1">
+            <span id="repasPlaceholder">Photo du Patio momentanément indisponible</span>
+            <img id="repasPhoto" src="patio-devanture.jpg" alt="Devanture de la salle de réception Le Patio — Mary d’Arvigny" loading="lazy" onload="document.getElementById('repasPlaceholder').style.display='none'" onerror="this.style.display='none';document.getElementById('repasPlaceholder').style.display='block'">
           </div>
           <div class="event-actions">
             <a class="mini-action" href="https://goo.gl/maps/XV2d4qZRxKWGmhvb6" target="_blank" rel="noopener"><i class="ti ti-map-pin"></i>Itinéraire</a>
@@ -531,7 +537,7 @@ textarea{min-height:100px;resize:vertical}
   - RSVP individuel + allergies/intolérances/régimes.
   - Récapitulatif final nominatif avec uniquement les lieux confirmés.
   - Modification d'une réponse après validation.
-  - Sauvegarde locale temporaire sur le navigateur en attendant la future connexion Google Sheets.
+  - Sauvegarde locale temporaire sur le navigateur en attendant la future base de données centralisée.
 
   IMPORTANT : sur GitHub Pages, HOUSEHOLDS reste visible dans le code source.
   Une vraie protection de la liste des invités nécessitera un stockage externe / backend.
@@ -556,8 +562,8 @@ const WEDDING = {
       title:"Le Patio — Mary d’Arvigny",
       address:"Allée Édouard Branly, 77550 Moissy-Cramayel, Seine-et-Marne",
       addressHtml:"Allée Édouard Branly<br>77550 Moissy-Cramayel<br>Seine-et-Marne<br>De 15 h à 20 h 30",
-      image:"",
-      imageAlt:"Le Patio — Mary d’Arvigny",
+      image:"patio-devanture.jpg",
+      imageAlt:"Devanture de la salle de réception Le Patio — Mary d’Arvigny",
       mapUrl:"https://goo.gl/maps/XV2d4qZRxKWGmhvb6",
       calendarTitle:"Mariage de Timothée & Christel — Réception et repas",
       startTime:"15:00",
@@ -574,10 +580,11 @@ const WEDDING = {
 const PRACTICAL_INFO = [];
 
 /*
-  Deux foyers de TEST pour visualiser les deux cas :
+  Foyers de TEST (non définitifs) :
   - MUYINGA : mairie + réception/repas
-  - YAPO : Autilia YAPO, mairie uniquement
-  La liste complète sera remplacée quand tu me l'enverras.
+  - YAPO : mairie + réception/repas (jamais mairie seulement)
+  - DEMO : réception/repas uniquement pour tester le message explicatif
+  Les véritables foyers et les liens uniques seront intégrés à réception de la liste.
 */
 const HOUSEHOLDS = {
   "muyinga": {
@@ -591,9 +598,16 @@ const HOUSEHOLDS = {
   },
   "yapo": {
     display:"YAPO",
-    type:"mairie",
+    type:"complet",
     people:[
       {id:"autilia", first:"Autilia", last:"YAPO", role:"Adulte"}
+    ]
+  },
+  "demo": {
+    display:"Démo",
+    type:"repas",
+    people:[
+      {id:"demo_invite", first:"Invité", last:"Démo", role:"Adulte"}
     ]
   }
 };
@@ -684,8 +698,9 @@ function personFullName(person){
 
 function invitationIncludes(eventName){
   if(!currentHousehold)return false;
-  if(currentHousehold.type==="complet")return true;
-  return currentHousehold.type===eventName;
+  // Toute invitation à la mairie inclut nécessairement le repas.
+  if(currentHousehold.type==="complet" || currentHousehold.type==="mairie")return true;
+  return currentHousehold.type==="repas" && eventName==="repas";
 }
 
 function findFamily(){
@@ -731,12 +746,9 @@ function buildInvitation(){
   pill.textContent=currentHousehold.people.length===1 ? personFullName(currentHousehold.people[0]) : "Famille "+currentHousehold.display;
   recipients.innerHTML=currentHousehold.people.map(person=>`<span>${escapeHtml(personFullName(person))}</span>`).join("");
 
-  if(currentHousehold.type==="mairie"){
-    copy.textContent="Nous serions très heureux de vous compter parmi nous pour célébrer notre union.";
-    scope.textContent="Votre invitation comprend la cérémonie civile à la mairie de Longjumeau.";
-  }else if(currentHousehold.type==="repas"){
-    copy.textContent="Nous serions très heureux de vous retrouver pour partager ce moment de célébration avec nous.";
-    scope.textContent="Votre invitation comprend la réception et le repas.";
+  if(currentHousehold.type==="repas"){
+    copy.textContent="En raison du nombre limité de places au sein de la mairie, nous ne pourrons malheureusement pas y accueillir l’ensemble de nos proches. C’est pourquoi nous serions particulièrement heureux de vous retrouver à l’occasion de notre réception, afin de célébrer ensemble notre union.";
+    scope.textContent="Nous vous donnons rendez-vous pour la réception et le repas, de 15 h à 20 h 30.";
   }else{
     copy.textContent="Nous serions très heureux de partager avec vous cette journée d’amour, de famille et de célébration.";
     scope.textContent="Votre invitation comprend la cérémonie civile ainsi que la réception et le repas.";
@@ -936,7 +948,7 @@ function recapEventHtml(kind){
         <div class="recap-event-title">${escapeHtml(event.title)}</div>
         <div class="recap-event-address">${event.addressHtml}</div>
       </div>
-      <div class="recap-photo${kind === 'mairie' ? ' mairie-photo' : ''}">
+      <div class="recap-photo${kind === 'mairie' ? ' mairie-photo' : kind === 'repas' ? ' repas-photo' : ''}">
         ${event.image
           ? `<span>Photo du lieu à ajouter</span><img src="${escapeHtml(event.image)}" alt="${escapeHtml(event.imageAlt)}" onload="this.previousElementSibling.style.display='none'" onerror="this.style.display='none'">`
           : `<span>Photo de la salle à ajouter ultérieurement</span>`}
