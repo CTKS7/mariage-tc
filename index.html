@@ -2,50 +2,24 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#9CAF88">
-  <meta name="description" content="L'invitation au mariage de Christel et Timothée">
-  <title>Christel & Timothée — Notre mariage</title>
-  <link rel="preload" href="assets/monogramme.svg" as="image" type="image/svg+xml">
-  <style>
-    :root { --sauge:#9CAF88; --creme:#FEF2E6; }
-    * { box-sizing:border-box; }
-    html,body { margin:0; min-height:100%; background:var(--sauge); }
-    body { font-family:Georgia,'Times New Roman',serif; color:var(--creme); }
-    .accueil { min-height:100svh; display:grid; place-items:center; overflow:hidden; position:relative; padding:clamp(20px,4vw,60px); }
-    .embleme { width:min(57vw,340px); min-width:min(67vw,205px); aspect-ratio:314.25 / 354.75; position:relative; isolation:isolate; }
-    .embleme__base,.embleme__fleur { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
-    .embleme__base { opacity:0; animation:apparition 1.45s ease-out .16s forwards; }
-    .embleme__fleur { clip-path:polygon(36% 0%,100% 0%,100% 48%,36% 48%); transform:scale(.72) translateY(13%); transform-origin:72% 26%; opacity:0; animation:floraison 1.55s cubic-bezier(.2,.7,.2,1) .42s forwards; }
-    .instruction { position:absolute; bottom:max(33px,env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); border:0; background:transparent; color:var(--creme); font:italic 13px/1.4 Georgia,serif; letter-spacing:.07em; white-space:nowrap; cursor:pointer; opacity:0; animation:apparition 1s ease 2.2s forwards; padding:10px 15px; }
-    .instruction::after { content:'↓'; display:block; margin-top:6px; font-style:normal; font-size:22px; transition:transform .3s ease; }
-    .instruction:hover::after { transform:translateY(4px); }
-    .suite { min-height:100svh; display:grid; place-items:center; padding:32px; background:#fef2e6; color:#506047; text-align:center; }
-    .suite__contenu { max-width:520px; }
-    .suite h1 {font-weight:normal; font-size:clamp(2rem,6vw,4rem); margin:.25em 0;}
-    .suite p {line-height:1.7;}
-    @keyframes apparition {to{opacity:1;}}
-    @keyframes floraison {0%{opacity:0; transform:scale(.72) translateY(13%);} 25%{opacity:1;} 100%{opacity:1;transform:scale(1) translateY(0);}}
-    @media (max-width:600px) {.embleme{width:min(72vw,325px);} .instruction{bottom:45px;}}
-    @media (prefers-reduced-motion:reduce) { .embleme__base,.embleme__fleur,.instruction{animation:none;opacity:1;transform:none;} html{scroll-behavior:auto;} }
-  </style>
+  <meta name="description" content="Christel & Timothée — notre mariage.">
+  <title>Christel & Timothée</title>
+  <link rel="preload" href="assets/fond-vert-sauge-texture.png" as="image">
+  <link rel="preload" href="assets/fleur-canva.svg" as="image">
+  <link rel="preload" href="assets/initiales-ct.svg" as="image">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <section class="accueil" aria-label="Accueil de l'invitation de mariage">
-      <div class="embleme" role="img" aria-label="Monogramme C et T avec une fleur rose">
-        <img class="embleme__base" src="assets/monogramme.svg" alt="" aria-hidden="true">
-        <img class="embleme__fleur" src="assets/monogramme.svg" alt="" aria-hidden="true">
-      </div>
-      <button class="instruction" type="button" onclick="document.getElementById('suite').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'})">Découvrir notre invitation</button>
-    </section>
-    <section class="suite" id="suite" aria-label="Suite de l'invitation">
-      <div class="suite__contenu">
-        <p>NOTRE MARIAGE</p>
-        <h1>Christel &amp; Timothée</h1>
-        <p>La suite de notre invitation prendra place ici : transition vers l'enveloppe, ouverture et détails du mariage.</p>
-      </div>
-    </section>
+  <!-- PAGE 1 — Composition issue des éléments Canva du couple.
+       Ne pas remplacer les fichiers SVG par des polices ou des dessins reconstitués. -->
+  <main class="accueil" aria-label="Bienvenue sur le site du mariage de Christel et Timothée">
+    <div class="composition" role="img" aria-label="Initiales C et T manuscrites, entrelacées avec une fleur rose">
+      <!-- L'ordre des couches reproduit la création Canva : initiales derrière, fleur devant. -->
+      <img class="initiales" src="assets/initiales-ct.svg" alt="" width="400" height="454" draggable="false" fetchpriority="high">
+      <img class="fleur" src="assets/fleur-canva.svg" alt="" width="309" height="414" draggable="false" fetchpriority="high">
+    </div>
   </main>
 </body>
 </html>
